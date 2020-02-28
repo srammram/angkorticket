@@ -302,7 +302,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	text-transform: uppercase;
 
 }
-.fh5co-nav ul li a.btn{padding: 6px 12px;border-radius: 0px;color: #fff;}
+.fh5co-nav ul li a.btn{padding: 6px 16px;border-radius:4px;color: #fff;background-color: #6c6d6f;border-color: #6c6d6f }
 .fh5co-nav ul li::after{position: absolute;content: '';width: 2px;height: 2px;background-color:#090b0b;top: 20px; }
 
 .fh5co-nav ul li:last-child::after{display: none;}

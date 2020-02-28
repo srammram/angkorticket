@@ -18,7 +18,7 @@
 				</div>
 
 				<div class="left-menu text-center menu-1">
-					<ul>
+					<?php /*?><ul>
 						<li <?php if($last_word == 'index'){ ?> class="active" <?php } ?>><a href="<?= site_url(); ?>">HOME</a></li>
 						<li <?php if($last_word == 'aboutus'){ ?> class="active" <?php } ?>><a href="#" >ABOUT US</a></li>
 						
@@ -27,19 +27,13 @@
 						<li <?php if($last_word == 'contact'){ ?> class="active" <?php } ?>><a href="<?= site_url('contact'); ?>" >CONTACT</a></li>
 
 						
-					</ul>
+					</ul><?php */?>
 				</div>
 
 				<div class="right-menu text-left menu-1">
-
 					<ul>
-
-						<li class="pull-right"><a href="<?= site_url(); ?>/admin/login?group=3" class="btn btn-success">Login</a></li>
-
-						
-
+						<li class="pull-right"><a href="<?= site_url(); ?>/admin/login?group=3" class="btn btn-default">Login</a></li>
 					</ul>
-
 				</div>
 
 				
