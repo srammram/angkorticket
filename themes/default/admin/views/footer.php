@@ -173,14 +173,9 @@ function getDate(element) {
 	return date;
 }
 
-$('#dob').datepicker({
+$('#ticket_date').datepicker({
 	dateFormat: "dd/mm/yy" ,
-	defaultDate: d_age,
-	changeMonth: true,
-	changeYear: true,
-	maxDate: d_age,
-	yearRange: '-100:+0',
-	   
+	minDate:0,	   
 });
 
 

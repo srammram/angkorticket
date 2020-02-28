@@ -1,4 +1,4 @@
-	<title>Heyycab one stopehailing solution catering to all sections of B2B & B2C clientele </title>
+	<title><?= $Settings->site_name ?> </title>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,300,600,400italic,700" rel="stylesheet" type="text/css">
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="<?= $assets ?>frontend/css/animate.css">

@@ -1,17 +1,18 @@
 <script>
-    function currency_status(x) {
-        var y = x.split("__");
-        return y[0] == 1 ?
-        '<a href="'+site.base_url+'masters/bank_status/deactivate/'+ y[1] +'"><span class="label label-success">  '+lang['active']+'</span></a>' :
-        '<a href="'+site.base_url+'masters/bank_status/activate/'+ y[1] +'"><span class="label label-danger">  '+lang['inactive']+'</span><a/>';
+   
+   function booking_type(x) {
+		
+       	return x == 1 ? 
+        '<span class=" text-success">Admin</span>' :
+        '<span class=" text-danger">App</span>';
+    }
+	function booking_user(x) {
+		
+      	return x == 1 ? 
+        '<span class=" text-success">Another Customer</span>' :
+        '<span class=" text-danger">Customer</span>';
     }
 	
-	function bank_default(a) {
-       
-        return a == 1 ?
-        '<a href=""><span class="label label-warning">Default</span></a>' :
-        '';
-    }
     $(document).ready(function () {
         'use strict';
         oTable = $('#UsrTable').dataTable({
@@ -19,7 +20,7 @@
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true, 'bServerSide': true,
-            'sAjaxSource': '<?= admin_url('notification/getNotifications?sdate='.$_GET['sdate'].'&edate='.$_GET['edate']) ?>',
+            'sAjaxSource': '<?= admin_url('booking/getBooking?sdate='.$_GET['sdate'].'&edate='.$_GET['edate']) ?>',
             'fnServerData': function (sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -27,7 +28,7 @@
                 });
                 $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
             },
-            "aoColumns": [ {"mRender": empty_status}, {"mRender": empty_status}]
+            "aoColumns": [ {"mRender": booking_type}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": booking_user}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}]
         });
     });
 </script>
@@ -61,7 +62,7 @@
             </ul>
         </div>
     </div><?php */?>
-<a href="javascript:void(0)" id="excel" data-action="export_excel"><button type="button" class="btn btn-primary add_se_btn center-block"><i class="fa fa-file-excel-o"></i> <?= lang("export_to_excel"); ?></button></a>
+<a href="<?= admin_url('booking/add_booking'); ?>"><button type="button" class="btn btn-primary add_se_btn center-block"><i class="fa fa-plus-circle"></i> <?= lang("add_booking"); ?></button></a>
     <div class="box-content">
         <div class="row">
         		
@@ -84,7 +85,8 @@
                     </div>
                     
             </div>
-         
+            
+           
             
             <div class="col-lg-3 row">
             <div class="form-group col-lg-7">
@@ -107,9 +109,19 @@
                            class="table table-bordered table-hover table-striped">
                         <thead>
                         <tr>
+                            <th style="width: 33.33%!important;"><?php echo lang('booking_type'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('ticket_code'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('no_of_ticket'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('ticket_price'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('ticket_date'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('booking_user'); ?></th>
                             
-                            <th class="col-lg-2"><?php echo lang('title'); ?></th>
-                            <th style="width: 33.33%!important;"><?php echo lang('message'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('booking_person_name'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('booking_person_mobile'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('payment_gateway'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('payment_status'); ?></th>
+                            
+                            
                         </tr>
                         </thead>
                         <tbody>
@@ -192,7 +204,6 @@ $(document).ready(function(){
         var site = '<?php echo site_url() ?>';
 		var sdate = $('#start_date').val();
 		var edate = $('#end_date').val();
-		var approved = $('#approved').val();
 		window.location.href = site+"admin/notification/index?sdate="+sdate+"&edate="+edate;
 		
     });

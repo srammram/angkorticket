@@ -47,10 +47,9 @@ class Notification extends MY_Controller
 		
         $this->load->library('datatables');
         $this->datatables
-            ->select(" {$this->db->dbprefix('notification')}.title, {$this->db->dbprefix('notification')}.title as created, {$this->db->dbprefix('notification')}.message, country.name as instance_country ")
+            ->select(" {$this->db->dbprefix('notification')}.title, {$this->db->dbprefix('notification')}.message ")
             ->from("notification")
-			->join("countries country", " country.iso = notification.is_country", "left")
-			->where("notification.user_type = 4");
+			->where("notification.user_type = 0");
 			
 			
 			

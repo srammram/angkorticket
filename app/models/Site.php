@@ -49,11 +49,8 @@ class Site extends CI_Model
 	
 	
 	public function get_customer($customer_id) {
-		$this->db->select('u.id, u.oauth_token, u.country_code, u.parent_id, u.mobile, u.email, u.devices_imei, u.group_id, up.first_name, up.last_name, up.gender, u.photo');
+		$this->db->select('u.id, u.oauth_token, u.country_code, u.mobile, u.email, u.group_id, u.first_name, u.last_name, u.gender, u.dob, u.photo, u.country');
 		$this->db->from('users u');
-		$this->db->join('user_profile up', 'up.user_id = u.id
-
-', 'left');
 		$this->db->where('u.id', $customer_id);	
         $q = $this->db->get();
         if ($q->num_rows() > 0) {
@@ -117,6 +114,19 @@ class Site extends CI_Model
         return '<script type="text/javascript">' . file_get_contents($this->data['assets'] . 'js/modal.js') . '</script>';
     }
 
+	
+	
+	 public function getAllCustomer() {
+		$this->db->select('id, first_name, last_name');
+        $q = $this->db->get_where('users', array('group_id' => 3, 'active' => 1));
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
     public function checkPermissions() {
         $q = $this->db->get_where('permissions', array('group_id' => $this->session->userdata('group_id')), 1);
         if ($q->num_rows() > 0) {
@@ -232,8 +242,8 @@ class Site extends CI_Model
         return FALSE;
 	}
 	
-	function insertNotification($data, $countryCode){
-		$q = $this->db->insert('notification', array('user_type' => $data['user_type'], 'user_id' => $data['user_id'], 'title' => $data['title'], 'message' => $data['message'], 'created_on' => date('Y-m-d H:i:s')));
+	function insertNotification($data){
+		$q = $this->db->insert('notification', array('user_id' => $data['user_id'], 'title' => $data['title'], 'message' => $data['message'], 'created_on' => date('Y-m-d H:i:s')));
 		if($q){
 			
 			return true;	
