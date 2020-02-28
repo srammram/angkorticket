@@ -120,28 +120,13 @@
                                     
                                 </div>
                               </div>
-                              <div class="textbox-wrap form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-flag-o" aria-hidden="true"></i></span>
-                                    <select required class="form-control select" name="country_code" id="country_code">
-                                    	<option value="">Select Phone code</option>
-                                        <?php
-										foreach($countrys as $country){
-										?>
-                                        <option value="<?= $country->phonecode ?>"><?= '(+'.$country->phonecode.') '.$country->name ?></option>
-                                        <?php
-										}
-										?>
-                                    </select>
-                                    
-                                </div>
-                            </div>
+
                             
                             <div class="textbox-wrap form-group">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                    <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                     <input type="text" value="" required="required" class="form-control" name="identity"
-                                    placeholder="<?php /*?><?= lang('mobile') ?><?php */?> Enter your Mobile no"/>
+                                    placeholder="<?php /*?><?= lang('mobile') ?><?php */?> Enter your Email"/>
                                 </div>
                             </div>
                             <div class="textbox-wrap form-group">

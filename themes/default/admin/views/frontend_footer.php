@@ -32,8 +32,6 @@
 
 						<li><a href="<?= site_url('terms_conditions'); ?>">Terms & Conditions</a></li>
 
-						<li><a href="<?= site_url('book_ride'); ?>">Book A Ride</a></li>
-
 						<li><a href="<?= site_url('aboutus'); ?>">About Us</a></li>
 
 						<li><a href="<?= site_url('faq'); ?>">Faq</a></li>
@@ -76,7 +74,7 @@
 
 					<p>
 
-						<small class="block">&copy; 2019 Heyycab. All Rights Reserved.</small> 
+						<small class="block">&copy; 2019 Angkor Ticket. All Rights Reserved.</small> 
 
 						<small class="block">Powered by <a href="JavaScript:Void(0);" onclick="window.open('https://srammram.com/', '_blank')";>SRAM & MRAM </a>Core Engine </small>
 

@@ -579,14 +579,15 @@ class Auth_model extends CI_Model
         return (isset($id)) ? $id : FALSE;
     }
 
-    public function login($identity, $password, $country_code, $group_id, $remember = FALSE)
+    public function login($identity, $password, $group_id, $remember = FALSE)
     {
 		
        
         $this->trigger_events('pre_login');
 		
         if (empty($identity) || empty($password)) {
-			
+			echo '@@@';
+			die;
             $this->set_error('login_unsuccessful');
             return FALSE;
         }
@@ -598,8 +599,7 @@ class Auth_model extends CI_Model
 		
         $this->db->select($this->identity_column . ',  '.$this->tables['users'].'.email, '.$this->tables['users'].'.mobile, '.$this->tables['users'].'.country_code, '.$this->tables['users'].'.id as id, '.$this->tables['users'].'.password, '.$this->tables['users'].'.active, '.$this->tables['users'].'.last_login, '.$this->tables['users'].'.last_ip_address,  '.$this->tables['users'].'.group_id, '.$this->tables['users'].'.first_name, '.$this->tables['users'].'.last_name');
 			
-            $this->db->where('mobile', $this->db->escape_str($identity));
-			$this->db->where('country_code', $country_code);
+            $this->db->where('email', $this->db->escape_str($identity));
 			
 			$this->db->where('group_id', $group_id);
             $this->db->limit(1);

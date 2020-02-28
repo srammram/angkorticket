@@ -67,31 +67,15 @@
                 <ul class="nav navbar-nav pull-right">
                 	<li class="dropdown">
                         <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
-                               <?php
-							  // print_r($this->data['Bnotify']);
-							   ?>
-                            <i class="fa fa-bell" title="<?= lang('booking_cancel_notification') ?>" aria-hidden="true"></i><small><?= $this->data['Bnotify']['booking_count'] ?></small>
+                              
+                            <i class="fa fa-bell" title="<?= lang('notification') ?>" aria-hidden="true"></i><small>0</small>
                         </a>
                         <ul class="dropdown-menu pull-right">
-                            <?php
-							if(!empty($this->data['Bnotify']['result'])){
-								foreach($this->data['Bnotify']['result'] as $bnotify){
-							?>
-                            <li>
-                                <a href="<?=admin_url('booking_crm/tracking?booking_id='.$bnotify->ride_id.'&is_country='.$bnotify->is_country.'&is_read=1')?>">
-                                    This ticket <?= $bnotify->ticket_code ?> has been cancelled.
-                                </a>
-                            </li>
-                            <?php
-								}
-							}else{
-							?>
+                           
                             <li>
                                 No Notification
                             </li>
-                            <?php
-							}
-							?>
+                           
                         </ul>
                     </li>
                     
@@ -149,57 +133,7 @@
                             
                         </ul>
                     </li>
-<!--                    <li class="dropdown hidden-xs"><a class="btn tip" title=" Dashboard" data-placement="bottom" href="<?=admin_url()?>welcome"><i class="fa fa-dashboard"></i></a></li>-->
-                    	<!--<li class="dropdown hidden-sm">
-                            <a class="btn tip" title="Search" data-placement="bottom" href="#" data-toggle="dropdown" data-original-title=" Notifications">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </a>
-                            <ul class="dropdown-menu pull-right calc">
-                                <li>
-                                    <a href="javascript:void(0)" class=""><input type="text" placeholder="search"></a>
-                                </li>
-                            </ul>
-                        </li>-->
-                    	<!--<li class="dropdown hidden-sm">
-                            <a class="btn tip" title="" data-placement="bottom" href="#" data-toggle="dropdown" data-original-title=" Notifications">
-                                <i class="fa fa-bell" aria-hidden="true"></i>
-                                <span class="number bred white">4</span>
-                            </a>
-                            <ul class="dropdown-menu pull-right"  style="display: none;">
-                                <li>
-                                    <a href="#" class="">
-                                        <span class="label label-danger pull-right" style="margin-top:3px;">1</span>
-                                        <span style="padding-right: 35px;">Notification</span>
-                                    </a>
-                                </li>
-								<li>
-                                    <a href="#" class="">
-                                        <span class="label label-danger pull-right" style="margin-top:3px;">2</span>
-                                        <span style="padding-right: 35px;">notification</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>-->
-                    	<!--<li class="dropdown hidden-sm">
-                            <a class="btn tip" title="" data-placement="left" data-toggle="dropdown" href="#" data-original-title=" Alerts">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <span class="number bred white">4</span>
-                            </a>
-                            <ul class="dropdown-menu pull-right" style="display: none;">
-								<li>
-                                    <a href="#" class="">
-                                        <span class="label label-danger pull-right" style="margin-top:3px;">1</span>
-                                        <span style="padding-right: 35px;">Message1</span>
-                                    </a>
-                                </li>
-								<li>
-                                    <a href="#" class="">
-                                        <span class="label label-danger pull-right" style="margin-top:3px;">2</span>
-                                        <span style="padding-right: 35px;">Message1</span>
-                                    </a>
-                                </li>
-							</ul>
-                        </li>-->
+
 				</ul>
             </div>
             

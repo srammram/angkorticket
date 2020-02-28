@@ -23,19 +23,7 @@
 
 						
 
-						<li class="has-dropdown">
-
-							<a href="javascript:void(0)">PARTNER WITH US</a>
-
-							<ul class="dropdown">
-
-								<li><a href="<?= site_url('drivewithus'); ?>">Drive with us</a></li>
-
-								<li><a href="<?= site_url('franchisee'); ?>">Become a Franchisee </a></li>
-
-							</ul>
-
-						</li>
+						
 
 					</ul>
 
@@ -51,25 +39,14 @@
 
 					<ul>
 
-						<li <?php if($last_word == 'book_ride'){ ?> class="active" <?php } ?>><a href="<?= site_url('book_ride'); ?>">BOOK A RIDE</a></li>
+						
 
 						<li <?php if($last_word == 'faq'){ ?> class="active" <?php } ?>><a href="<?= site_url('faq'); ?>" >FAQ</a></li>
 
 						<li <?php if($last_word == 'contact'){ ?> class="active" <?php } ?>><a href="<?= site_url('contact'); ?>" >CONTACT</a></li>
 
-						<li class="has-dropdown login_s">
-
-							<a href="javascript:void(0)"><i class="fa fa-user"></i> LOGIN</a>
-
-							<ul class="dropdown">
-
-								<li><a href="<?= site_url(); ?>/admin/login?group=5">Customer Login</a></li>
-
-								<li><a href="<?= site_url(); ?>/admin/login?group=4">Driver Login</a></li>
-
-							</ul>
-
-						</li>
+						<li><a href="<?= site_url(); ?>/admin/login?group=3" >Login</a></li>
+						
 
 					</ul>
 

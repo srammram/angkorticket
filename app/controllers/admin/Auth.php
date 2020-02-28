@@ -17,7 +17,7 @@ class Auth extends MY_Controller
     function index()
     {
 		
-		$this->site->users_logs($this->session->userdata('user_id'), $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
+		
         if (!$this->loggedIn) {
             admin_redirect('login');
         } else {
@@ -49,7 +49,7 @@ class Auth extends MY_Controller
     function login($m = NULL)
     {
 		
-		$this->site->users_logs($this->session->userdata('user_id'), $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
+		
         if ($this->loggedIn) {
             $this->session->set_flashdata('error', $this->session->flashdata('error'));
             admin_redirect('welcome');
@@ -62,13 +62,14 @@ class Auth extends MY_Controller
 
 
             $remember = (bool)$this->input->post('remember');
-	
-            if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $this->input->post('country_code'), $this->input->post('group_id'), $remember)) {
+			
+            if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $this->input->post('group_id'), $remember)) {
 				
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 $referrer = 'welcome';
                 admin_redirect($referrer);
             } else {
+				
 				
                 $this->session->set_flashdata('error', $this->ion_auth->errors());
                 admin_redirect('login');
@@ -77,34 +78,7 @@ class Auth extends MY_Controller
 
             $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
             $this->data['message'] = $this->session->flashdata('message');
-            if ($this->Settings->captcha) {
-                $this->load->helper('captcha');
-                $vals = array(
-                    'img_path' => './assets/captcha/',
-                    'img_url' => base_url('assets/captcha/'),
-                    'img_width' => 150,
-                    'img_height' => 34,
-                    'word_length' => 5,
-                    'colors' => array('background' => array(255, 255, 255), 'border' => array(204, 204, 204), 'text' => array(102, 102, 102), 'grid' => array(204, 204, 204))
-                );
-                $cap = create_captcha($vals);
-                $capdata = array(
-                    'captcha_time' => $cap['time'],
-                    'ip_address' => $this->input->ip_address(),
-                    'word' => $cap['word']
-                );
 
-                $query = $this->db->insert_string('captcha', $capdata);
-                $this->db->query($query);
-                $this->data['image'] = $cap['image'];
-                $this->data['captcha'] = array('name' => 'captcha',
-                    'id' => 'captcha',
-                    'type' => 'text',
-                    'class' => 'form-control',
-                    'required' => 'required',
-                    'placeholder' => lang('type_captcha')
-                );
-            }
 
             $this->data['identity'] = array('name' => 'identity',
                 'id' => 'identity',

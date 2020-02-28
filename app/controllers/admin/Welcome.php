@@ -31,17 +31,9 @@ class Welcome extends MY_Controller
 	}
     public function index()
     {
-       if($this->session->userdata('group_id') == 1){
-			if($this->input->get('is_country') != ''){
-				$countryCode = $this->input->get('is_country');	
-			}else{
-				$countryCode = $this->input->post('is_country');	
-			}	
-		}else{
-			$countryCode = $this->countryCode;	
-		}
-		$this->data['commoncountry'] = $this->site->getcountryCodeID($countryCode);
-		$this->site->users_logs($countryCode,$this->session->userdata('user_id'), $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
+       
+		
+		$this->site->users_logs($this->session->userdata('user_id'), $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
 
         $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
         $lmsdate = date('Y-m-d', strtotime('first day of last month')) . ' 00:00:00';
@@ -53,15 +45,7 @@ class Welcome extends MY_Controller
 		
 		$this->data['url_data'] = $this->db_model->getUrlData($this->session->userdata('group_id'), $countryCode);
 		
-		/*if($this->session->userdata('group_id') == 3){
-        	$this->page_construct('dashboard_vendor', $meta, $this->data);
-		}elseif($this->session->userdata('group_id') == 4){
-			$this->page_construct('dashboard_driver', $meta, $this->data);
-		}elseif($this->session->userdata('group_id') == 6){
-			$this->page_construct('dashboard_employee', $meta, $this->data);
-		}else{
-			$this->page_construct('dashboard', $meta, $this->data);
-		}*/
+		
 		$this->page_construct('dashboard', $meta, $this->data);
     }
 
