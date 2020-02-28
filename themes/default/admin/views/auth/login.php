@@ -66,7 +66,7 @@
 
                 <div class="login-form-div">
                     <div class="login-content">
-                        <div class="text-center">
+                        <div class="text-center login_sec_t">
            
                             <?php if ($Settings->logo2) {
                                 echo '<img src="' . base_url('assets/uploads/logo/login_logo.png') . '" alt="' . $Settings->site_name . '"  />';
@@ -98,10 +98,7 @@
                         ?>
                         <?php echo admin_form_open("auth/login", 'class="login" data-toggle="validator"'); ?>
                         <div class="div-title col-sm-12" style="text-align: center;">
-                            <h3>
-                            
-                           <?= lang('login_to_your_account') ?>
-                            </h3>
+                            <h3>Login</h3>
                         </div>
                         <div class="col-sm-12 login_sec_s">
                         	<div class="textbox-wrap form-group">

@@ -50,8 +50,7 @@
 	 
 
         	<div class="row">
-            	<a class="text-center slide-logo" href="<?=admin_url()?>"><img src="<?=$assets?>images/logo.png" style="
-    width: auto;"></a>
+            	<a class="text-center slide-logo" href="<?=admin_url()?>"><img src="<?=$assets?>images/logo.png" style="width: 100%;"></a>
     		<div class="btn-group visible-xs pull-right btn-visible-sm">
                 <button class="navbar-toggle btn" type="button" data-toggle="collapse" data-target="#sidebar_menu">
                     <span class="fa fa-bars"></span>
@@ -147,9 +146,10 @@
             <div id="sidebar-left">
                 <div class="sidebar-nav nav-collapse collapse navbar-collapse" id="sidebar_menu">
                 	<div class="col-lg-12 text-center">
-                    	<h3 class="yellow"><?= lang('admin_panel') ?></h3>
-                         <img alt="" src="<?=$assets?>icons/male-lg.png" class="mini_avatar img-rounded">
-                         <h3 class="yellow"><?= $this->session->userdata('username') ?></h3> 
+<!--						<span class="logo_s_t"><a class="text-center" href="<?=admin_url()?>"></a></span>-->
+						<h3 class="yellow logo_s_t"><?= lang('admin_panel') ?></h3>
+						<img alt="" src="<?=$assets?>icons/male-lg.png" class="mini_avatar img-rounded">
+						<h3 class="yellow"><?= $this->session->userdata('username') ?></h3> 
                     </div>
                     
                    <?=@$navigation?>

@@ -28,28 +28,26 @@ h3 {
 	 background-size: 100% 100%;
 }
 .login-page .login-form-div {
-     	position: absolute;
+	position: absolute;
     top: 50%;
-    left: 27%;
+    left: 50%;
     margin-right: -50%;
-    transform: translate(-27%, -50%);
+    transform: translate(-50%, -50%);
 }
 .login-page .login-content,
 .login-page .reg-content {
-    background-color: transparent;
+    background: rgba(255,255,255,0.95);
     padding-bottom: 20px;
     width: 360px;
     border-radius: 10px;
     overflow: hidden;
     padding: 15px;
 }
-.login-page .div-title {
-    margin: 20px 0;
-}
-.login-page .div-title h3{color: #090a0b;font-style: italic;font-size: 22px;margin: 20px 0px;}
+
+.login-page .div-title h3{color: #090a0b;font-size: 22px;margin: 10px 0px;font-weight: bold;}
 .login-page .input-group .input-group-addon {
     border-radius: 0;
-	border: none;border-bottom: 1px solid #898a8a;
+	border: none;border-bottom: 1px solid #898a8a;border-top: 1px solid #898a8a;border-left: 1px solid #898a8a;
 	background-color: transparent;
 }
 .login-page .custom-checkbox {
@@ -103,9 +101,9 @@ h3 {
 }
 .login-page .btn, .login-page .form-control {
     border-radius: 0 !important;
-	border: none;border-bottom: 1px solid #898a8a;border-color: #898a8a!important;background-color: transparent;box-shadow: none;outline: none;
+	border: none;border-bottom: 1px solid #898a8a;border-color: #898a8a!important;background-color: transparent;box-shadow: none;outline: none;border-top: 1px solid #898a8a;border-right: 1px solid #898a8a;
 }
-.login-page .btn{background-color: #000;border-color: #000;color: #fff;border-radius: 5px!important;font-weight: bold;opacity: 1;width: 160px;height: 35px;padding: 0px;line-height: 35px;font-size: 16px;text-transform: uppercase;letter-spacing: 1px;}
+.login-page .btn{background-color:#6c6d6f;border-color:#6c6d6f;color: #fff;border-radius: 5px!important;font-weight: bold;opacity: 1;width: 160px;height: 35px;padding: 0px;line-height: 35px;font-size: 16px;text-transform: uppercase;letter-spacing: 1px;}
 .login-page .login-form-links {
     padding: 20px;
     margin-top: 5px;
@@ -152,9 +150,14 @@ h3 {
     border-bottom: 1px solid #898a8a;
     border-radius: 0px;
     height: 34px;
+ 	border-top: 1px solid #898a8a;
+	border-right: 1px solid #898a8a;
 }
 .login_sec_s .select2-container--default .select2-selection--single:focus{outline: none;}
 .login_sec_s .select2-container--default .select2-selection--single .select2-selection__rendered{    color: #898a8a;    line-height: 20px;padding: 6px 16px;}
 .login-page .login_lang_s li .btn{background-color: transparent;border-color: transparent!important;}
 .login_lang_s{position: absolute;right: 15px;top: 15px;}
 .login-page .login_lang_s li .btn::before{content: 'Lang';position: absolute;left: 25px;font-size: 14px;text-transform: capitalize;color: black;}
+
+/*angkor wat*/
+.login_sec_t img{width: 200px;}

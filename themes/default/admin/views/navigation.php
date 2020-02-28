@@ -3,23 +3,25 @@
 .navbar-collapse,#sidebar-left{padding: 0px;}
 .mainmenu li{padding: 6px 0px;color: #fff;}
 .mainmenu li span{padding-left: 15px;}
-	.mainmenu li strong{position: absolute;margin-left: 10px;color: #f2b818; font-weight: 600;}
+	.mainmenu li strong{position: absolute;margin-left: 10px;color: #bdb6b6; font-weight: 600;}
 .mainmenu li a {
   display: block;
   background-color: transparent;
   text-decoration: none;
-  padding: 6px 0px 6px 30%;
+  padding: 6px 0px 6px 20%;
   color: #fff;
 }
-	.mainmenu li a::before{position: absolute;content:'';width: 10px;height: 10px;background-color: #f2b818;left: 21.7%;margin-top: 6px; }
+	.mainmenu li a::before{position: absolute;content:'';width: 10px;height: 10px;background-color: #fff;left: 10%;margin-top: 6px;border-radius: 50px; }
 	.mainmenu li a:hover:before{background-color: #000;}
 .mainmenu a:hover {
-    background-color: #f2b818;
+    background-color: #bdb6b6;
 	color: #000;transition: all 0.25s ease;
+	font-weight: bold;
 }
 .mainmenu .active {
-    background-color: #f2b818;
+    background-color: #bdb6b6;
     color: #000;
+	font-weight: bold;
 }
 .mainmenu li .active:before{background-color: #000;}
 .mainmenu li:hover .submenu {
@@ -47,36 +49,10 @@
 <nav class="navigation" id="navigation_container">
 
   <ul class="mainmenu">
-    <li><span><div class="kappoverview"></div> </span><strong><?= lang('overview') ?></strong>
-    	<ul>
-    		<li><a class="<?= $this->uri->segment(2) == 'welcome' ? 'active' : '' ?>" href="<?=admin_url('welcome')?>"><?= lang('statistics') ?></a></li>
+   <li><a class="<?= $this->uri->segment(2) == 'welcome' ? 'active' : '' ?>" href="<?=admin_url('welcome')?>"><?= lang('statistics') ?></a></li>
            
-            <li><a class="<?= $this->uri->segment(2) == 'notification' ? 'active' : '' ?>" href="<?=admin_url('notification/index')?>"><?= lang('notification') ?></a></li>
-    	</ul>
-    </li>
-    <?php if($this->session->userdata('group_id') != 3){  ?>
-    <li><span><div class="kappmaster"></div></span><strong><?= lang('masters') ?></strong>
-    	<ul>
-        	
-    		<li><a class="<?= $this->uri->segment(2) == 'people' && ($this->uri->segment(3) == 'customer' || $this->uri->segment(3) == 'customer_view' || $this->uri->segment(3) == 'add_customer') ? 'active' : '' ?>" href="<?=admin_url('people/customer')?>"><?= lang('customer') ?></a></li>
-            
-            
-    	</ul>
-    </li>
-    <?php
-	}
-	?>
-   
-    <?php if($this->session->userdata('group_id') != 3){  ?>
-    <li><span><div class="kappoption"></div></span><strong><?= lang('options') ?></strong>
-    	<ul>
-        	
-        	<li><a class="<?= $this->uri->segment(2) == 'masters' && $this->uri->segment(3) == 'index' ? 'active' : '' ?>" href="<?=admin_url('masters/index/'.$countryCode)?>"><?= lang('settings') ?></a></li>
-            
-    	</ul>
-    </li>
-    <?php } ?>
-    
-   
+	<li><a class="<?= $this->uri->segment(2) == 'notification' ? 'active' : '' ?>" href="<?=admin_url('notification/index')?>"><?= lang('notification') ?></a></li>
+   <li><a class="<?= $this->uri->segment(2) == 'people' && ($this->uri->segment(3) == 'customer' || $this->uri->segment(3) == 'customer_view' || $this->uri->segment(3) == 'add_customer') ? 'active' : '' ?>" href="<?=admin_url('people/customer')?>"><?= lang('customer') ?></a></li>
+   <li><a class="<?= $this->uri->segment(2) == 'masters' && $this->uri->segment(3) == 'index' ? 'active' : '' ?>" href="<?=admin_url('masters/index/'.$countryCode)?>"><?= lang('settings') ?></a></li>
   </ul>
 </nav>

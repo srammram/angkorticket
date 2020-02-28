@@ -83,7 +83,7 @@ h6 {
     
 }
 #sidebar-left {
-    background-color: #000000;
+    background-color:#292222;
     padding: 10px;
     transition: transform 0.2s ease-in-out 0s, width 0.2s ease-in-out 0s;
 	height: 100vh;
@@ -3579,12 +3579,14 @@ body, html
 .slide-logo
 {
 	width:230px;
-	background:#fff;
+	background:#292222;
 	position:relative;
 	float:left;
 	text-align:center;
 	padding:3px 0px;
+	height: 50px;
 }
+
 .sidebar-nav > ul > li > ul
 {
 	background-color: #000 !important;
@@ -3698,6 +3700,9 @@ body, html
 .dataTables_wrapper{padding: 10px;}
 .img_box_se .magnifier-thumb-wrapper{display: inline;}
 .file-caption-name{position: absolute;}
+
+/*angkorwat sec*/
+#sidebar_menu .logo_s_t {margin-top: 50%;}
 
 /**/
 @media (max-width: 767px) {
