@@ -98,3 +98,13 @@
     </div>
 </div>
 
+<script>
+$(document).on('change', '#no_of_ticket', function(){
+	var no_of_ticket = $(this).val();
+	if(no_of_ticket != 0){
+		var price = '<?= $this->Settings->adult_price ?>';
+		var ticket_price = (no_of_ticket * price).toFixed(2);
+		$('#ticket_price').val(ticket_price);
+	}
+});
+</script>

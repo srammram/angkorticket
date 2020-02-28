@@ -28,7 +28,7 @@
                 });
                 $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
             },
-            "aoColumns": [ {"mRender": booking_type}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": booking_user}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}]
+            "aoColumns": [ {"mRender": booking_type}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": booking_user}, {"mRender": empty_status},{"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}]
         });
     });
 </script>
@@ -119,6 +119,7 @@
                             <th style="width: 33.33%!important;"><?php echo lang('booking_person_name'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('booking_person_mobile'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('payment_gateway'); ?></th>
+                             <th style="width: 33.33%!important;"><?php echo lang('transaction_no'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('payment_status'); ?></th>
                             
                             

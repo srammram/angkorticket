@@ -47,7 +47,7 @@ class Booking extends MY_Controller
 		
         $this->load->library('datatables');
         $this->datatables
-            ->select(" {$this->db->dbprefix('booking')}.id as id, {$this->db->dbprefix('booking')}.booking_type, {$this->db->dbprefix('booking')}.booking_code, {$this->db->dbprefix('booking')}.no_of_ticket, {$this->db->dbprefix('booking')}.ticket_price, {$this->db->dbprefix('booking')}.ticket_date, {$this->db->dbprefix('booking')}.booking_user, {$this->db->dbprefix('booking')}.booking_person_name, {$this->db->dbprefix('booking')}.booking_person_mobile, {$this->db->dbprefix('booking')}.payment_gateway, {$this->db->dbprefix('booking')}.payment_status ")
+            ->select(" {$this->db->dbprefix('booking')}.id as id, {$this->db->dbprefix('booking')}.booking_type, {$this->db->dbprefix('booking')}.booking_code, {$this->db->dbprefix('booking')}.no_of_ticket, {$this->db->dbprefix('booking')}.ticket_price, {$this->db->dbprefix('booking')}.ticket_date, {$this->db->dbprefix('booking')}.booking_user, {$this->db->dbprefix('booking')}.booking_person_name, {$this->db->dbprefix('booking')}.booking_person_mobile, {$this->db->dbprefix('booking')}.payment_gateway, {$this->db->dbprefix('booking')}.payment_transaction_no, {$this->db->dbprefix('booking')}.payment_status ")
             ->from("booking");
 			
 			if(!empty($sdate) && !empty($edate)){
