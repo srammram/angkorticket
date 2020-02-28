@@ -13,39 +13,29 @@
 
 			<div class="row">
 
-				<div class="left-menu text-right menu-1">
-
-					<ul>
-
-						<li <?php if($last_word == 'index'){ ?> class="active" <?php } ?>><a href="<?= site_url(); ?>">HOME</a></li>
-
-						<li <?php if($last_word == 'aboutus'){ ?> class="active" <?php } ?>><a href="<?= site_url('aboutus'); ?>" >ABOUT US</a></li>
-
-						
-
-						
-
-					</ul>
-
+				<div class="logo text-center">
+					<div id="fh5co-logo"><a href="<?= site_url(); ?>"><img src="<?= $assets ?>frontend/images/logo.png" alt="logo"></a></div>
 				</div>
 
-				<div class="logo text-center">
+				<div class="left-menu text-center menu-1">
+					<ul>
+						<li <?php if($last_word == 'index'){ ?> class="active" <?php } ?>><a href="<?= site_url(); ?>">HOME</a></li>
+						<li <?php if($last_word == 'aboutus'){ ?> class="active" <?php } ?>><a href="#" >ABOUT US</a></li>
+						
+						<li <?php if($last_word == 'faq'){ ?> class="active" <?php } ?>><a href="#" >FAQ</a></li>
 
-					<div id="fh5co-logo"><a href="<?= site_url(); ?>"><img src="<?= $assets ?>frontend/images/logo.png" alt="logo"></a></div>
+						<li <?php if($last_word == 'contact'){ ?> class="active" <?php } ?>><a href="<?= site_url('contact'); ?>" >CONTACT</a></li>
 
+						
+					</ul>
 				</div>
 
 				<div class="right-menu text-left menu-1">
 
 					<ul>
 
-						
+						<li class="pull-right"><a href="<?= site_url(); ?>/admin/login?group=3" class="btn btn-success">Login</a></li>
 
-						<li <?php if($last_word == 'faq'){ ?> class="active" <?php } ?>><a href="<?= site_url('faq'); ?>" >FAQ</a></li>
-
-						<li <?php if($last_word == 'contact'){ ?> class="active" <?php } ?>><a href="<?= site_url('contact'); ?>" >CONTACT</a></li>
-
-						<li><a href="<?= site_url(); ?>/admin/login?group=3" >Login</a></li>
 						
 
 					</ul>

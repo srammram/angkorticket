@@ -202,11 +202,11 @@ h1, h2, h3, h4, h5, h6, figure {
 
 }
 
-.fh5co-nav .left-menu, .fh5co-nav .right-menu, .fh5co-nav .logo {
+.fh5co-nav .left-menu {
 
   display: inline-block;
 
-  width: 45%;
+  width: 60%;
 
   float: left;
 
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .fh5co-nav .logo {
 
-  width: 10%;
+  width: 20%;
 
   float: left;
 
@@ -234,7 +234,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 }
 
-.fh5co-nav #fh5co-logo a img{width: 90px;margin-top: -18px;}
+.fh5co-nav #fh5co-logo a img{width: auto;margin-top: 0px;}
 
 @media screen and (max-width: 768px) {
 
@@ -288,7 +288,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .fh5co-nav ul li a {
 
-  font-size: 13px;
+  font-size: 16px;
 
   padding: 30px 15px;
 
@@ -299,12 +299,14 @@ h1, h2, h3, h4, h5, h6, figure {
   -o-transition: 0.5s;
 
   transition: 0.5s;
+	text-transform: uppercase;
 
 }
-
+.fh5co-nav ul li a.btn{padding: 6px 12px;border-radius: 0px;color: #fff;}
 .fh5co-nav ul li::after{position: absolute;content: '';width: 2px;height: 2px;background-color:#090b0b;top: 20px; }
 
 .fh5co-nav ul li:last-child::after{display: none;}
+.fh5co-nav ul li:nth-child(4)::after{display: none;}
 
 .fh5co-nav ul li a:hover, .fh5co-nav ul li a:focus, .fh5co-nav ul li a:active {
 
@@ -470,9 +472,9 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .fh5co-bg {
 
-  background-size: cover;
+  background-size: 100% 100%;
 
-  background-position: left center;
+  background-position: center center;
 
   background-repeat: no-repeat;
 
@@ -602,7 +604,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .fh5co-cover.fh5co-cover-sm {
 
-  height: 200px;
+  height: 130px;
 
 }
 
@@ -2900,7 +2902,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 #fh5co-started .container-fluid{padding: 0px;}
 
-.booking_btn_s{background-color: #282f35;padding: 45px 0px;}
+.booking_btn_s{background-color: #6b5500;padding: 45px 0px;}
 
 #fh5co-started  .subscription_email .form-control{width: 79%;border-radius: 0px;}
 
