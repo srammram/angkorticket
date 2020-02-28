@@ -26,11 +26,17 @@ class Masters extends MY_Controller
 	function index(){
 		
 		$this->site->users_logs($this->session->userdata('user_id'), $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
-		//$this->form_validation->set_rules('driver_ride_accept', lang('driver_ride_accept'), 'trim|required');
-		$this->form_validation->set_rules('search_kilometer', lang('search_kilometer'), 'trim|required');
+		$this->form_validation->set_rules('site_name', lang('site_name'), 'trim|required');
 		if ($this->form_validation->run() == true) {
-			
+			$data = array(
+				'site_name' => $this->input->post('site_name'),
+				'timezone' => $this->input->post('timezone'),
+				'adult_price' => $this->input->post('adult_price'),
+				'child_price' => $this->input->post('child_price'),
+				'child_age_limit' => $this->input->post('child_age_limit'),
+			);
 		}elseif ($this->input->post('update_settings')) {
+			
             $this->session->set_flashdata('error', validation_errors());
             admin_redirect("masters/index");
         }
@@ -44,7 +50,7 @@ class Masters extends MY_Controller
 			$this->data['action'] = $action;
 			$bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('settings')));
 			$meta = array('page_title' => lang('settings'), 'bc' => $bc);
-			
+			$this->data['dataSettings'] = $this->site->get_setting();
 			$this->page_construct('masters/index', $meta, $this->data);
 
 		}

@@ -53,19 +53,14 @@
 									</a>
 								</div>
 							</div>
-						   <button type="button" class="btn btn-info pull-right change_btn_sec" style="width: 100%;">
-								<span class="pull-left">
-								<input type="file" id="selectedFile" style="display: none;" />
-								<input type="button" value="Change" onclick="document.getElementById('selectedFile').click();" class="change_btn_s" />
-							   </span> <i class="fa fa-rotate-right pull-right"></i>
-							</button>
-							<div class="magnifier-preview" id="preview" style="width: 300px; height:300px;position: absolute;right: -50%;"></div>
+						  
+							
 						</td>
 					</tr>
 					<tr>
-						<td>approved</td>
+						<td>status</td>
 						<td>:</td>
-						<td><?= $user->user_approved == 1 ? '<p class="btn btn-success">Active</p>' : '<p class="btn btn-danger">Inactive</p>' ?></td>
+						<td><?= $user->active == 1 ? '<p class="btn btn-success">Active</p>' : '<p class="btn btn-danger">Inactive</p>' ?></td>
 					</tr>
 
 				</tbody>

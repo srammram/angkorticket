@@ -23,7 +23,7 @@ class People extends MY_Controller
 		$this->upload_path = 'assets/';
 		$this->image_path = base_url('assets/');
 		$this->load->admin_model('people_model');
-		$this->load->admin_model('masters_model');
+		$this->load->admin_model('users_model');
 		
     }
 	
@@ -55,11 +55,9 @@ class People extends MY_Controller
 		
         $this->load->library('datatables');
         $this->datatables
-            ->select("{$this->db->dbprefix('users')}.id as id, {$this->db->dbprefix('users')}.created_on, {$this->db->dbprefix('users')}.refer_code, {$this->db->dbprefix('users')}.first_name, up.last_name, {$this->db->dbprefix('users')}.email, {$this->db->dbprefix('users')}.mobile,  up.gender, country.name as instance_country")
+            ->select("{$this->db->dbprefix('users')}.id as id, {$this->db->dbprefix('users')}.created_on, {$this->db->dbprefix('users')}.first_name, {$this->db->dbprefix('users')}.last_name, {$this->db->dbprefix('users')}.email, {$this->db->dbprefix('users')}.mobile,  {$this->db->dbprefix('users')}.gender, {$this->db->dbprefix('users')}.dob")
             ->from("users")
-			->join("user_profile up", "up.user_id = users.id AND up.is_edit = 1 ", 'left')
-			->join("countries country", " country.iso = users.is_country", "left")
-			->where("users.group_id", $group_id);
+			->where("users.group_id", 3);
 			
 			if(!empty($sdate) && !empty($edate)){
 				$this->datatables->where("DATE({$this->db->dbprefix('users')}.created_on) >=", date("Y-m-d", strtotime(str_replace('/', '-', $sdate))));
@@ -87,11 +85,10 @@ class People extends MY_Controller
 		
         if ($this->form_validation->run() == true) {
 			
-			$refer_code = $this->site->refercode('C', $countryCode); 
 			
-			$check_mobile = $this->people_model->checkMobilecustomer($this->input->post('mobile'), $this->input->post('country_code'), $countryCode);
-			if($check_mobile == 1){
-				$this->session->set_flashdata('error', lang("mobile_number_already_exits"));
+			$check_email = $this->people_model->checkEmailcustomer($this->input->post('email'));
+			if($check_email == 1){
+				$this->session->set_flashdata('error', lang("email_number_already_exits"));
            		admin_redirect('people/add_customer');
 			}
 						
@@ -100,6 +97,7 @@ class People extends MY_Controller
 		   
 		   $user = array(
 		   		'oauth_token' => $oauth_token,
+				'username' => 'CUS'.date('YmdHis'),
 				'devices_imei' => 'first_time',
 				'email' => $this->input->post('email'),
 				'first_name' => $this->input->post('first_name'),
@@ -108,26 +106,17 @@ class People extends MY_Controller
 				'dob' => $this->input->post('dob'),
 				'password' => md5($this->input->post('password')),
 				'text_password' => $this->input->post('password'),
-				'country_code' => $this->input->post('country_code'),
 				'mobile' => $this->input->post('mobile'),
-				'mobile_otp' => $mobile_otp,
 				'created_by' => $this->session->userdata('user_id'),
 				'created_on' => date('y-m-d H:i:s'),
 				'group_id' => 3,
-				'refer_code' => $refer_code,
 				'is_edit' => 1,
 				'complete_user' => 1,
 				'active' => 1,
 				'is_approved' => 1
 		   );
 		   
-		   $user_profile = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name' => $this->input->post('last_name'),
-				'gender' => $this->input->post('gender'),
-				'dob' => $this->input->post('dob'),
-				'is_edit' => 1
-		   );
+		   
 		   
 		   if ($_FILES['photo']['size'] > 0) {
 				$config['upload_path'] = $this->upload_path.'users/';
@@ -146,23 +135,23 @@ class People extends MY_Controller
 			}
 			
 			
-			//$this->sma->print_arrays($user, $user_profile, $user_address, $user_bank, $user_document);
+			//$this->sma->print_arrays($user);
 			//die;
         }
 		
-        if ($this->form_validation->run() == true && $this->people_model->add_customer($user, $user_profile, $user_address, $countryCode, $refer_code, $this->input->post('reference_no'))){
+        if ($this->form_validation->run() == true && $this->people_model->add_customer($user)){
 			
-			$sms_message = $this->input->post('first_name').' your account has been register successfully.Your refer code : '.$refer_code.'';
-			$sms_phone = $this->input->post('country_code').$this->input->post('mobile');
-			$sms_country_code = $this->input->post('country_code');
-			$response_sms = $this->sms_user($sms_message, $sms_phone, $sms_country_code);
+			//$sms_message = $this->input->post('first_name').' your account has been register successfully.Your refer code : '.$refer_code.'';
+			//$sms_phone = $this->input->post('country_code').$this->input->post('mobile');
+			//$sms_country_code = $this->input->post('country_code');
+			//$response_sms = $this->sms_user($sms_message, $sms_phone, $sms_country_code);
             $this->session->set_flashdata('message', lang("customer_added"));
             admin_redirect('people/customer');
         } else {
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('people/customer'), 'page' => lang('customer')), array('link' => '#', 'page' => lang('add_customer')));
             $meta = array('page_title' => lang('add_customer'), 'bc' => $bc);
-			$this->data['country_code'] = $this->masters_model->getALLCountry();			
+				
             $this->page_construct('people/add_customer', $meta, $this->data);
         }        
     }
@@ -185,7 +174,7 @@ class People extends MY_Controller
 	
 	function customer_view($id){
 		
-		$this->site->users_logs($countryCode,$this->session->userdata('user_id'), $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
+		$this->site->users_logs($this->session->userdata('user_id'), $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['id'] = $id;
 		$this->data['user'] = $this->users_model->getUser($id);
