@@ -16,7 +16,6 @@
 
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, iusto quam exercitationem distinctio molestias maxime provident ex odit, pariatur magnam vero excepturi dolor dignissimos quod hic praesentium suscipit, optio vel...</p>
 
-						<p class="btn_learn"><a href="aboutus.php">Read More</a></p>
 
 				</div>
 
@@ -27,16 +26,13 @@
 				<h3>Quick Links</h3>
 
 					<ul class="fh5co-footer-links">
-<?php /*?><?= site_url('privacy_policy'); ?><?php */?>
-						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="<?= base_url('privacy_policy') ?>">Privacy Policy</a></li>
 
-						<li><a href="#">Terms & Conditions</a></li>
+						<li><a href="<?= base_url('booking_conditions') ?>">Booking Conditions</a></li>
 
-						<li><a href="#">About Us</a></li>
+						<li><a href="<?= base_url('angkor_tips') ?>">Angkor Tips</a></li>
 
-						<li><a href="#">Faq</a></li>
 
-						<li><a href="<?= site_url('contact'); ?>">Contact</a></li>
 
 					</ul>
 

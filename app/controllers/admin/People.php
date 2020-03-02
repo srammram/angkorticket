@@ -93,7 +93,7 @@ class People extends MY_Controller
 			}
 						
            $oauth_token = get_random_key(32,'users','oauth_token',$type='alnum');
-		   $mobile_otp = random_string('numeric', 6);
+		   $country = $this->site->getCountryName($this->input->post('country_code'));
 		   
 		   $user = array(
 		   		'oauth_token' => $oauth_token,
@@ -106,6 +106,7 @@ class People extends MY_Controller
 				'dob' => $this->input->post('dob'),
 				'password' => md5($this->input->post('password')),
 				'text_password' => $this->input->post('password'),
+				'country_code' => $this->input->post('country_code'),
 				'mobile' => $this->input->post('mobile'),
 				'created_by' => $this->session->userdata('user_id'),
 				'created_on' => date('y-m-d H:i:s'),
@@ -113,7 +114,8 @@ class People extends MY_Controller
 				'is_edit' => 1,
 				'complete_user' => 1,
 				'active' => 1,
-				'is_approved' => 1
+				'is_approved' => 1,
+				'country' => $country,
 		   );
 		   
 		   
@@ -129,7 +131,6 @@ class People extends MY_Controller
 					$result = array( 'status'=> false , 'message'=> lang('image_not_uploaded'));
 				}
 				$photo = $this->upload->file_name;
-				$user_profile['photo'] = 'users/'.$photo;
 				$user['photo'] = 'users/'.$photo;
 				$config = NULL;
 			}
@@ -151,7 +152,7 @@ class People extends MY_Controller
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('people/customer'), 'page' => lang('customer')), array('link' => '#', 'page' => lang('add_customer')));
             $meta = array('page_title' => lang('add_customer'), 'bc' => $bc);
-				
+			$this->data['countrys']	= $this->site->getCountry();
             $this->page_construct('people/add_customer', $meta, $this->data);
         }        
     }

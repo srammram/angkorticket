@@ -258,4 +258,24 @@ class Site extends CI_Model
 		}
 		return 0;
 	}
+	
+	function getCountry(){
+		$this->db->select('name, phonecode');
+		$q = $this->db->get('countries');
+		if($q->num_rows()>0){
+			return $q->result();
+		}
+		return false;
+	}
+	
+	function getCountryName($phonecode){
+		$this->db->select('name');
+		$this->db->where('phonecode', $phonecode);
+		$q = $this->db->get('countries');
+		if($q->num_rows()>0){
+			return $q->row('name');
+		}
+		return 0;		
+	}
+	
 }

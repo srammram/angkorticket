@@ -23,27 +23,23 @@ class Main extends MY_Controller
         $this->load->view($this->theme . 'index', $this->data);
     }
 	
-	function aboutus() {
-        $this->load->view($this->theme . 'aboutus', $this->data);
+	function booking_conditions() {
+        $this->load->view($this->theme . 'booking_conditions', $this->data);
     }
 	
-	function faq() {
-        $this->load->view($this->theme . 'faq', $this->data);
+	function privacy_policy() {
+        $this->load->view($this->theme . 'privacy_policy', $this->data);
     }
-	function contact() {
-        $this->load->view($this->theme . 'contact', $this->data);
-    }
-	function terms_conditions() {
-        $this->load->view($this->theme . 'terms_conditions', $this->data);
+	
+	function angkor_tips() {
+        $this->load->view($this->theme . 'angkor_tips', $this->data);
     }	
 	
 	function login() {
         admin_redirect('login');
     }
 
-	function privacy_policy() {
-        $this->load->view($this->theme . 'privacy_policy', $this->data);
-    }
+	
 	
 	
 

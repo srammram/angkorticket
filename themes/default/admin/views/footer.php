@@ -18,7 +18,7 @@
 var aurl = '<?=admin_url()?>'; 
 var siteurl = '<?=site_url()?>'; 
 var sUrl = '<?=site_url()?>'; 
-
+var site = {"url":''+siteurl+'',"base_url":''+aurl+'',"assets":"http:\/\/localhost\/kapp\/themes\/default\/admin\/assets\/","settings":{"logo":"logo2.png","logo2":"logo3.png","site_name":"kapp","language":"english","default_warehouse":"1","accounting_method":"2","default_currency":"2","default_tax_rate":"1","rows_per_page":"25","version":"3.2.10","default_tax_rate2":"1","dateformat":"4","sales_prefix":"SALE","quote_prefix":"QUOTE","purchase_prefix":"PO","transfer_prefix":"TR","delivery_prefix":"DO","payment_prefix":"IPAY","return_prefix":"SR","returnp_prefix":"PR","expense_prefix":"","item_addition":"0","theme":"default","product_serial":"1","default_discount":"1","product_discount":"1","discount_method":"1","tax1":"1","tax2":"1","overselling":"1","timezone_gmt":"GMT+07:00","iwidth":"800","iheight":"800","twidth":"150","theight":"150","watermark":"0","smtp_host":"pop.gmail.com","bc_fix":"4","auto_detect_barcode":"1","captcha":"0","reference_format":"3","racks":"0","attributes":"0","product_expiry":"1","decimals":"2","qty_decimals":"2","decimals_sep":".","thousands_sep":",","invoice_view":"0","default_biller":"12","rtl":"0","each_spent":null,"ca_point":null,"each_sale":null,"sa_point":null,"sac":"0","display_all_products":"0","display_symbol":"1","symbol":"$","remove_expired":"0","barcode_separator":"_","set_focus":"0","price_group":"1","barcode_img":"1","ppayment_prefix":"POP","disable_editing":"90","qa_prefix":"","update_cost":"0","apis":"1","state":"AN","pdf_lib":"dompdf","dine_in":"1","take_away":"1","door_delivery":"1","first_level":"5","second_level":"5","qsr":"0","customer_discount_request":"1","nagative_stock_production":"0","excel_header_color":"d28f16","excel_footer_color":"ffc000","installed_date":"2018-03-01 00:00:00","site_expiry_date":"0000-00-00","bill_reset":"0","billnumber_reset":"0","recipe_time_management":"1","bill_number_start_from":"010001","enable_qrcode":"0","enable_barcode":"0","default_preparation_time":"600","night_audit_rights":"1","user_language":"english","user_rtl":"0","indian_gst":false},"dateFormats":{"js_sdate":"dd-mm-yyyy","php_sdate":"d-m-Y","mysq_sdate":"%d-%m-%Y","js_ldate":"dd-mm-yyyy hh:ii","php_ldate":"d-m-Y H:i","mysql_ldate":"%d-%m-%Y %H:%i"}};
 
 </script>
 
@@ -178,6 +178,15 @@ $('#ticket_date').datepicker({
 	minDate:0,	   
 });
 
+$('#dob').datepicker({
+	dateFormat: "dd/mm/yy" ,
+	defaultDate: d_age,
+	changeMonth: true,
+	changeYear: true,
+	maxDate: d_age,
+	yearRange: '-100:+0',
+	   
+});
 
 
 

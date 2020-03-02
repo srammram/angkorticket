@@ -1,21 +1,268 @@
 <!DOCTYPE html>
 <html>
-    
- 
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Heyycab API Documents</title>
-	
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-     <link rel="stylesheet" href="http://demo.callmycab.in/assets/adminlte/bootstrap/css/bootstrap.min.css">
-    
-	</head>
-   
-  <body>
-		<h2 class="text-center">Heyycab API Documents</h2>
-        
-  </body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<h2 class="text-center">Angkor Ticket API Documents</h2>
+<div class="well">
+<table width="100%">
+    <tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Setting</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>GET</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/setting</td> 
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Register</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/register</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>password, country_code, mobile, devices_imei, first_name, email, mobile_verify, gender, dob, last_name</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>email, password, country_code, mobile, devices_imei, first_name</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Profile</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/profile</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>oauth_token</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>oauth_token</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Profile Edit</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/profile_edit</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>photo, oauth_token, email, country_code, mobile, first_name, last_name, gender, dob</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>oauth_token</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Login</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/login</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>email, password</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>email, password</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Forgot</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/forgot</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>mobile, country_code</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>mobile, country_code</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Forgot Verify OTP</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/forgotverify_otp</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>customer_id, otp</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>customer_id, otp</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Forgot Resend OTP</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/forgotresend_otp</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>customer_id</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>customer_id</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Reset Password</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/resetpassword</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>customer_id, password</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>customer_id, password</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Ticket Booking</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/ticketbook</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>oauth_token, no_of_ticket, ticket_price, ticket_date, booking_email, booking_person_name, booking_person_mobile, booking_gender, booking_country, hotel_name, room_no, photo</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>oauth_token, no_of_ticket, ticket_price, ticket_date</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+<div class="well">
+<table width="100%">
+	<tbody>
+        <tr>
+        <td width="100px">Name</td><td width="50px">:</td><td>Ticket List</td>
+        </tr>
+        <tr> 
+        <td>Method</td><td>:</td><td>POST</td> 
+        </tr>
+        <tr>
+        <td>Url</td><td>:</td><td>http://13.233.27.181/api/v1/customers/ticketlist</td> 
+        </tr>
+        <tr>
+        <td>Parameter</td><td>:</td><td>oauth_token</td> 
+        </tr>
+        <tr>
+        <td>Mandatory</td><td>:</td><td>oauth_token</td> 
+        </tr>
+        <tr>
+        <td>Notes</td><td>:</td><td></td> 
+        </tr>
+	</tbody>
+</table>
+</div>
+</body>
 </html>

@@ -96,6 +96,7 @@ class Booking extends MY_Controller
 				'adult_price' => $this->input->post('ticket_price'),
 				'payment_gateway' => 'Cash',
 				'payment_status' => 'Success',
+				'payment_transaction_no' => 'TRNO'.date('YmdHis'),
 				'created_by' => $this->session->userdata('user_id'),
 				'created_on' => date('y-m-d H:i:s'),
 				

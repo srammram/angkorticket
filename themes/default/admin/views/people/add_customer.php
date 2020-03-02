@@ -41,15 +41,19 @@
 							</div>
 						</div>
 
-						<div class="form-group col-sm-3 col-xs-12">
-							<?php echo lang('email', 'email'); ?>
-							<div class="controls">
-								<input type="text" id="email" name="email" class="form-control"/>
-							</div>
-							<p class="help-block-small"><?= lang('ex_email') ?></p>
-						</div>
-
 						
+
+						<div class="form-group col-sm-3 col-xs-12">
+							<?php echo lang('country_code', 'country_code'); ?>
+							<?php
+							$c[''] = 'Select Country';
+							foreach($countrys as $country){
+								$c[$country->phonecode] = '(+'.$country->phonecode.')'.$country->name;
+							}
+							echo form_dropdown('country_code', $c, (isset($_POST['country_code']) ? $_POST['country_code'] : ''), 'class="tip form-control select" id="country_code" data-placeholder="' . lang("select") . ' ' . lang("country_code") . '" required="required"');
+							?>
+						</div>
+                        
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('mobile', 'mobile'); ?>
 							<div class="controls">
@@ -57,6 +61,13 @@
 							</div>
 						</div>
 
+						<div class="form-group col-sm-3 col-xs-12">
+							<?php echo lang('email', 'email'); ?>
+							<div class="controls">
+								<input type="text" id="email" name="email" class="form-control"/>
+							</div>
+							<p class="help-block-small"><?= lang('ex_email') ?></p>
+						</div>
 
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('gender', 'gender'); ?>

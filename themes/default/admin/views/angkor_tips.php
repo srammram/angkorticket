@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Privacy Policy</title>
+    <title>Angkor Tips</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<?= $assets ?>images/favicon.ico"/>
     
@@ -27,7 +27,7 @@
                         <div class="scp-breadcrumb">
                             <ul class="breadcrumb">
                                 <li><a href="<?= base_url() ?>">Home</a></li>
-                                <li class="active">Privacy Policy</li>
+                                <li class="active">Angkor Tips</li>
                             </ul>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
 
 				<div class="col-sm-12 col-xs-12 privacy_policy">
 
-					<h3 class="text-left">Privacy Policy</h3>
+					<h3 class="text-left">Angkor Tips</h3>
 
 					
 
