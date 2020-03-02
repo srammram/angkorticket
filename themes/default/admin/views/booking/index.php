@@ -28,7 +28,7 @@
                 });
                 $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
             },
-            "aoColumns": [ {"mRender": booking_type}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": booking_user}, {"mRender": empty_status},{"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}]
+            "aoColumns": [ {"mRender": booking_type}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": booking_user}, {"mRender": empty_status}, {"mRender": empty_status},{"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}]
         });
     });
 </script>
@@ -111,6 +111,7 @@
                         <tr>
                             <th style="width: 33.33%!important;"><?php echo lang('booking_type'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('ticket_code'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('package_name'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('no_of_ticket'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('ticket_price'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('ticket_date'); ?></th>

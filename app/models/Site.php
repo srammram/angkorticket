@@ -268,6 +268,27 @@ class Site extends CI_Model
 		return false;
 	}
 	
+	function get_package(){
+		$this->db->select('id, name, days, price');
+		$q = $this->db->get('package');
+		if($q->num_rows()>0){
+			return $q->result();
+		}
+		return false;
+	}
+	
+	function get_packageID($package_id){
+		$this->db->select('name, days, price');
+		$this->db->where('id', $package_id);
+		$q = $this->db->get('package');
+		if($q->num_rows()>0){
+			return $q->row();
+		}
+		return false;
+	}
+	
+	
+	
 	function getCountryName($phonecode){
 		$this->db->select('name');
 		$this->db->where('phonecode', $phonecode);

@@ -54,7 +54,27 @@
                     
                     <div class="col-md-12">
 						<h2 class="box_he_de"><?= lang('ticket_details') ?></h2> 
-                        <h4 class="col-md-12 text-danger">Ticket Price per head : <?= $this->Settings->adult_price ?></h4>
+                        
+                        <h4 class="col-md-12 text-danger">
+                        Ticket Price per head : <span id="per_head"></span><br>
+                        Days : <span id="days"></span>
+                        </h4>
+                        <div class="form-group col-sm-3 col-xs-12">
+							<?php echo lang('package', 'package'); ?>
+                            <select name="package_id" id="package_id" class="form-control select">
+                            	<option value="">Select Package</option>
+                                <?php
+								foreach ($packages as $package) {
+								?>
+                                <option value="<?= $package->id ?>" data-price="<?= $package->price ?>" data-days="<?= $package->days ?>"><?= $package->name ?></option>
+                                <?php
+								}
+								?>
+                            </select>
+                            
+                           
+                        </div>   
+                        
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('no_of_ticket', 'no_of_ticket'); ?>
 							<div class="controls">
@@ -65,7 +85,7 @@
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('ticket_price', 'ticket_price'); ?>
 							<div class="controls">
-								<input type="text" id="ticket_price" readonly value="<?= $this->Settings->adult_price ?>" name="ticket_price" class="form-control"/>
+								<input type="text" id="ticket_price" readonly value="0.00" name="ticket_price" class="form-control"/>
 							</div>
 						</div>
                         
@@ -101,10 +121,26 @@
 <script>
 $(document).on('change', '#no_of_ticket', function(){
 	var no_of_ticket = $(this).val();
+	var package_price  = $('#package_id option:selected').attr('data-price');
 	if(no_of_ticket != 0){
-		var price = '<?= $this->Settings->adult_price ?>';
+		var price = package_price ? package_price : 0;
 		var ticket_price = (no_of_ticket * price).toFixed(2);
 		$('#ticket_price').val(ticket_price);
 	}
 });
+$(document).on('change', '#package_id', function(){
+	var package_price  = $('#package_id option:selected').attr('data-price');
+	var package_days  = $('#package_id option:selected').attr('data-days');
+	var no_of_ticket = $('#no_of_ticket').val();
+	
+	$('#per_head').text(package_price ? package_price : 0.00);
+	$('#days').text(package_days ? package_days : 0);
+	
+	if(no_of_ticket != 0){
+		var price = package_price ? package_price : 0;
+		var ticket_price = (no_of_ticket * price).toFixed(2);
+		$('#ticket_price').val(ticket_price);
+	}
+});
+
 </script>

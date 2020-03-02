@@ -29,5 +29,52 @@ class Masters_model extends CI_Model
         return false;
     }
 	
+	/*### Package*/
+    function add_package($data){
+		
+		$this->db->insert('package', $data);
+        $package_id = $this->db->insert_id();	
+		if($package_id){
+			return true;
+		}
+		return false;
+    }
+    function update_package($id,$data){
+		
+		$this->db->where('id',$id);
+		if($this->db->update('package',$data)){
+	    	return true;
+		}
+		return false;
+    }
+	
+    function getPackageby_ID($id){
+		$this->db->select('*');
+		$this->db->from('package');
+		$this->db->where('id',$id);
+		$q = $this->db->get();
+		if($q->num_rows()>0){
+			return $q->row();
+		}
+		return false;
+    }
+	function getALLPackage(){
+		$q = $this->db->get('package');
+		if($q->num_rows()>0){
+			foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+			return $data;
+		}
+		return false;
+	}
+    function update_package_status($data,$id){
+		$this->db->where('id',$id);
+		if($this->db->update('package',$data)){
+			return true;
+		}
+		return false;
+    }
+	
 	
 }

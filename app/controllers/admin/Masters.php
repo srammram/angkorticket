@@ -57,4 +57,114 @@ class Masters extends MY_Controller
 		
 	}
 	
+	/*###### package*/
+    function package($action = NULL)
+    {
+		
+        $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        $this->data['action'] = $action;
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('package')));
+        $meta = array('page_title' => lang('package'), 'bc' => $bc);
+        $this->page_construct('masters/package', $meta, $this->data);
+    }
+    function getPackage(){
+		
+        $this->load->library('datatables');
+        $this->datatables
+            ->select("{$this->db->dbprefix('package')}.id as id, {$this->db->dbprefix('package')}.name,{$this->db->dbprefix('package')}.days,{$this->db->dbprefix('package')}.price, {$this->db->dbprefix('package')}.status as status")
+            ->from("package")
+			->where('package.is_delete', 0);
+			
+            $this->datatables->edit_column('status', '$1__$2', 'status, id');
+			
+			$edit = "<a href='" . admin_url('masters/edit_package/$1') . "' data-toggle='tooltip'  data-original-title='' aria-describedby='tooltip' title='".lang('click_here_to_full_details')."'  ><i class='fa fa-pencil-square-o' aria-hidden='true'  style='color:#656464; font-size:18px'></i></a>";
+			$delete = "<a href='" . admin_url('welcome/delete/package/$1') . "' data-toggle='tooltip'  data-original-title='' aria-describedby='tooltip' title='".lang('click_here_to_delete')."'  ><i class='fa fa-trash' style='color:#656464; font-size:18px'></i></a>";
+			
+			$this->datatables->add_column("Actions", "<div>".$edit."</div><div>".$delete."</div>", "id");
+
+        $this->datatables->unset_column('id');
+        echo $this->datatables->generate();
+    }
+	
+	
+    function add_package(){
+		
+        $this->form_validation->set_rules('name', lang("name"), 'required|is_unique[package.name]');
+		$this->form_validation->set_rules('days', lang("days"), 'required');
+		$this->form_validation->set_rules('price', lang("price"), 'required');
+     
+        if ($this->form_validation->run() == true) {
+			
+            $data = array(
+				'created_on' => date('Y-m-d H:i:s'),
+				'name' => $this->input->post('name'),
+                'days' => $this->input->post('days'),
+				'price' => $this->input->post('price'),
+				'created_by' => $this->session->userdata('user_id'),
+                'status' => 1,
+            );
+			
+        }elseif ($this->input->post('add_package')) {
+            $this->session->set_flashdata('error', validation_errors());
+            admin_redirect("masters/package");
+        }
+		
+        if ($this->form_validation->run() == true && $this->masters_model->add_package($data)){
+			
+            $this->session->set_flashdata('message', lang("package_added"));
+            admin_redirect('masters/package');
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('masters/package'), 'page' => lang('package')), array('link' => '#', 'page' => lang('add_package')));
+            $meta = array('page_title' => lang('add_package'), 'bc' => $bc);
+            $this->page_construct('masters/add_package', $meta, $this->data);
+        }
+    }
+    function edit_package($id){
+		$result = $this->masters_model->getPackageby_ID($id);
+		
+        $this->form_validation->set_rules('name', lang("name"), 'required');
+		if($result->name != $this->input->post('name')){
+			$this->form_validation->set_rules('name', lang("name"), 'is_unique[package.name]');
+		}
+		$this->form_validation->set_rules('days', lang("days"), 'required');
+		$this->form_validation->set_rules('price', lang("price"), 'required');
+				
+        if ($this->form_validation->run() == true) {
+			
+            $data = array(
+				'created_on' => date('Y-m-d H:i:s'),
+				'name' => $this->input->post('name'),
+                'days' => $this->input->post('days'),
+				'price' => $this->input->post('price'),
+				'created_by' => $this->session->userdata('user_id'),
+            );
+			
+        }
+		
+		
+        if ($this->form_validation->run() == true && $this->masters_model->update_package($id,$data)){
+			
+            $this->session->set_flashdata('message', lang("package_updated"));
+            admin_redirect('masters/package');
+        } else {
+            $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
+            $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('masters/package'), 'page' => lang('package')), array('link' => '#', 'page' => lang('package')));
+            $meta = array('page_title' => lang('edit_package'), 'bc' => $bc);
+            $this->data['package'] = $result;
+			$this->data['id'] = $id;
+            $this->page_construct('masters/edit_package', $meta, $this->data);
+        }
+    }
+    function package_status($status,$id){
+		
+		$data['status'] = 0;
+		if($status=='activate'){
+			$data['status'] = 1;
+		}
+		$this->masters_model->update_package_status($data,$id);
+		redirect($_SERVER["HTTP_REFERER"]);
+    }
+	
+	
 }

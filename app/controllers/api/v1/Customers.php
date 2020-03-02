@@ -31,9 +31,23 @@ class Customers extends REST_Controller {
 		$this->response($result);
 	}
 	
+	public function package_get(){
+		$package = $this->site->get_package();
+		if(!empty($package)){
+			$result = array( 'status'=> true , 'message'=> 'Success', 'data' => $package);
+		}else{
+			$result = array( 'status'=> false , 'message'=> 'no data');
+		}
+		$this->response($result);
+	}
+	
 	public function country_get(){
 		$country = $this->site->getCountry();
-		$result = array( 'status'=> true , 'message'=> 'Success', 'data' => $country);
+		if(!empty($country)){
+			$result = array( 'status'=> true , 'message'=> 'Success', 'data' => $country);
+		}else{
+			$result = array( 'status'=> false , 'message'=> 'no data');
+		}
 		$this->response($result);
 	}
 	
@@ -386,11 +400,12 @@ class Customers extends REST_Controller {
 		$this->form_validation->set_rules('no_of_ticket', lang("no_of_ticket"), 'required');  
 		$this->form_validation->set_rules('ticket_price', lang("ticket_price"), 'required');
 		$this->form_validation->set_rules('ticket_date', lang("ticket_date"), 'required');
+		$this->form_validation->set_rules('package_id', lang("package_id"), 'required');
 		
 		if ($this->form_validation->run() == true) {
 			$user_id = $this->customer_api->getUserID($this->input->post('oauth_token'));
 			$res = $this->customer_api->getUser($user_id);
-			
+			$package = $this->site->get_packageID($this->input->post('package_id'));
 			if($res->email != $this->input->post('booking_email')){
 				$booking_user = 1;
 			}else{
@@ -403,7 +418,9 @@ class Customers extends REST_Controller {
 				'booking_email' => $this->input->post('booking_email'),
 				'booking_gender' => $this->input->post('booking_gender'),
 				'booking_country' => $this->input->post('booking_country'),
-				
+				'package_id' => $this->input->post('package_id'),
+				'package_name' => $package->name,
+				'package_days' => $package->days,
 				'booking_user' => $booking_user,
 				'customer_id' => $user_id,
 				'booking_code' => 'TICKET'.date('YmdHis'),

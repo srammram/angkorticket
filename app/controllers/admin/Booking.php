@@ -47,7 +47,7 @@ class Booking extends MY_Controller
 		
         $this->load->library('datatables');
         $this->datatables
-            ->select(" {$this->db->dbprefix('booking')}.id as id, {$this->db->dbprefix('booking')}.booking_type, {$this->db->dbprefix('booking')}.booking_code, {$this->db->dbprefix('booking')}.no_of_ticket, {$this->db->dbprefix('booking')}.ticket_price, {$this->db->dbprefix('booking')}.ticket_date, {$this->db->dbprefix('booking')}.booking_user, {$this->db->dbprefix('booking')}.booking_person_name, {$this->db->dbprefix('booking')}.booking_person_mobile, {$this->db->dbprefix('booking')}.payment_gateway, {$this->db->dbprefix('booking')}.payment_transaction_no, {$this->db->dbprefix('booking')}.payment_status ")
+            ->select(" {$this->db->dbprefix('booking')}.id as id, {$this->db->dbprefix('booking')}.booking_type, {$this->db->dbprefix('booking')}.booking_code, {$this->db->dbprefix('booking')}.package_name, {$this->db->dbprefix('booking')}.no_of_ticket, {$this->db->dbprefix('booking')}.ticket_price, {$this->db->dbprefix('booking')}.ticket_date, {$this->db->dbprefix('booking')}.booking_user, {$this->db->dbprefix('booking')}.booking_person_name, {$this->db->dbprefix('booking')}.booking_person_mobile, {$this->db->dbprefix('booking')}.payment_gateway, {$this->db->dbprefix('booking')}.payment_transaction_no, {$this->db->dbprefix('booking')}.payment_status ")
             ->from("booking");
 			
 			if(!empty($sdate) && !empty($edate)){
@@ -79,12 +79,17 @@ class Booking extends MY_Controller
 			}
 				*/		
            $customer = $this->site->get_customer($this->input->post('customer_id'));
+		   $package = $this->site->get_packageID($this->input->post('package_id'));
 		   
 		   $booking = array(
 		   		'booking_type' => 1,
 				'booking_code' => 'TICKET'.date('YmdHis'),
 				'booking_person_name' => $customer->first_name.$customer->last_name,
 				'booking_person_mobile' => $customer->mobile,
+				'package_id' => $this->input->post('package_id'),
+				'package_name' => $package->name,
+				'package_days' => $package->days,
+				
 				'booking_email' => $customer->email,
 				'booking_gender' => $customer->gender,
 				'booking_country' => $customer->country,
@@ -145,6 +150,8 @@ class Booking extends MY_Controller
             $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => admin_url('booking/add_booking'), 'page' => lang('customer')), array('link' => '#', 'page' => lang('add_booking')));
             $meta = array('page_title' => lang('add_booking'), 'bc' => $bc);
 			$this->data['customers']	 = $this->site->getAllCustomer();
+			$this->data['packages']	 = $this->site->get_package();
+			
             $this->page_construct('booking/add_booking', $meta, $this->data);
         }        
     }
