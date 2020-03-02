@@ -28,14 +28,10 @@
 
 					<ul class="fh5co-footer-links">
 <?php /*?><?= site_url('privacy_policy'); ?><?php */?>
-						<li><a href="#">Privacy Policy</a></li>
-
-						<li><a href="#">Terms & Conditions</a></li>
-
+						<li><a href="<?= site_url('angkortips'); ?>">Angkor Tips</a></li>
+						<li><a href="<?= site_url('privacy_policy'); ?>">Privacy Policy</a></li>
+						<li><a href="<?= site_url('booking_condition'); ?>">Booking Condition</a></li>
 						<li><a href="#">About Us</a></li>
-
-						<li><a href="#">Faq</a></li>
-
 						<li><a href="<?= site_url('contact'); ?>">Contact</a></li>
 
 					</ul>

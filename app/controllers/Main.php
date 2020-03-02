@@ -45,6 +45,11 @@ class Main extends MY_Controller
         $this->load->view($this->theme . 'privacy_policy', $this->data);
     }
 	
-	
+	function angkortips() {
+        $this->load->view($this->theme . 'angkortips', $this->data);
+    }
+	function booking_condition() {
+        $this->load->view($this->theme . 'booking_condition', $this->data);
+    }
 
 }
