@@ -41,6 +41,11 @@ class Main extends MY_Controller
 
 	
 	
-	
+	function angkortips() {
+        $this->load->view($this->theme . 'angkortips', $this->data);
+    }
+	function booking_condition() {
+        $this->load->view($this->theme . 'booking_condition', $this->data);
+    }
 
 }
