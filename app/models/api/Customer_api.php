@@ -145,7 +145,7 @@ class Customer_api extends CI_Model
 		if($u->num_rows()>0){
 			$row = $u->row();
 			if($row->photo !=''){
-				$row->photo = $image_path.$row->photo;
+				$row->photo = $row->photo;
 			}else{
 				$row->photo = $image_path.'default.png';
 			}

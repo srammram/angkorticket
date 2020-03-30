@@ -109,14 +109,47 @@ class Customers extends REST_Controller {
 				if($mobile_verify == 0 && $check_mobile == 1){
 					$result = array( 'status'=> 0 , 'message'=> 'Mobile number already exit!');	
 				}elseif($mobile_verify == 0 && $check_mobile == 0){
-					$sms_phone_otp = $mobile_otp;
-					$sms_phone = $this->input->post('country_code').$this->input->post('mobile');
-					$sms_country_code = $this->input->post('country_code');
-					$response_sms = $this->sms_user_active($sms_phone_otp, $sms_phone, $sms_country_code);
-					if($response_sms){
-						$result = array( 'status'=> 2 , 'message'=> 'OTP has been sent. Check it', 'data' => $mobile_otp);
+					//$sms_phone_otp = $mobile_otp;
+					//$sms_phone = $this->input->post('country_code').$this->input->post('mobile');
+					//$sms_country_code = $this->input->post('country_code');
+					//$response_sms = $this->sms_user_active($sms_phone_otp, $sms_phone, $sms_country_code);
+					//if($response_sms){
+						//$result = array( 'status'=> 2 , 'message'=> 'OTP has been sent. Check it', 'otp' => $mobile_otp);
+					//}else{
+						//$result = array( 'status'=> 2 , 'message'=> 'Unable to Send Mobile Verification Code', 'otp' => $mobile_otp);
+					//}
+					$country = $this->site->getCountryName($this->input->post('country_code'));
+					
+					$customer['country_code'] = $this->input->post('country_code');
+					$customer['mobile'] = $this->input->post('mobile');
+					$customer['mobile_otp'] = $mobile_otp;
+					$customer['email'] = $this->input->post('email');
+					$customer['password'] = md5($this->input->post('password'));
+					$customer['text_password'] = $this->input->post('password');
+					$customer['group_id'] = 3;
+					$customer['devices_imei'] = $this->input->post('devices_imei');
+					$customer['gender'] = $this->input->post('gender') ? $this->input->post('gender') : '';
+					$customer['oauth_token'] = $oauth_token;
+					$customer['first_name'] = $this->input->post('first_name');
+					$customer['last_name'] = $this->input->post('last_name') ? $this->input->post('last_name') : '';
+					$customer['dob'] = $this->input->post('dob') ? $this->input->post('dob') : '';
+					$customer['is_edit'] = 1;
+					$customer['is_approved'] = 1;
+					$customer['active'] = 1;
+					$customer['is_edit'] = 1;
+					$customer['country'] = $country;
+					$customer['created_on'] = date('y-m-d H:i:s');
+					$data = $this->customer_api->add_customer($customer);
+					if(!empty($data)){
+						
+						$sms_message = $this->input->post('first_name').' your account has been register successfully.';
+						$sms_phone = $this->input->post('country_code').$this->input->post('mobile');
+						$sms_country_code = $this->input->post('country_code');
+						$response_sms = $this->sms_user($sms_message, $sms_phone, $sms_country_code);
+						
+						$result = array( 'status'=> 1 , 'message'=> 'Registered Successfully!..', 'data' => $data);
 					}else{
-						$result = array( 'status'=> 2 , 'message'=> 'Unable to Send Mobile Verification Code', 'data' => $mobile_otp);
+						$result = array( 'status'=> 0 , 'message'=> 'Your details not register. please try again');
 					}
 				}elseif($mobile_verify == 1 && $check_mobile == 0){
 					
@@ -478,7 +511,7 @@ class Customers extends REST_Controller {
 		if ($this->form_validation->run() == true) {
 			$user_id = $this->customer_api->getUserID($this->input->post('oauth_token'));
 			$res = $this->customer_api->getTicketList($user_id);
-			$data[] = $res;
+			$data = $res;
 			if($data){
 				$result = array( 'status'=> 1 , 'message'=> 'profile edit success', 'data' => $data);
 			}else{
