@@ -56,8 +56,10 @@
     
    <li><a class="<?= $this->uri->segment(2) == 'people' && ($this->uri->segment(3) == 'customer' || $this->uri->segment(3) == 'customer_view' || $this->uri->segment(3) == 'add_customer') ? 'active' : '' ?>" href="<?=admin_url('people/customer')?>"><?= lang('customer') ?></a></li>
    <li><a class="<?= $this->uri->segment(2) == 'masters' && $this->uri->segment(3) == 'index' ? 'active' : '' ?>" href="<?=admin_url('masters/index/')?>"><?= lang('settings') ?></a></li>
+   <li><a class="<?= $this->uri->segment(2) == 'masters' && $this->uri->segment(3) == 'currency' ? 'active' : '' ?>" href="<?=admin_url('masters/currency/')?>"><?= lang('currency') ?></a></li>
    
    <li><a class="<?= $this->uri->segment(2) == 'masters' && $this->uri->segment(3) == 'package' ? 'active' : '' ?>" href="<?=admin_url('masters/package/')?>"><?= lang('package') ?></a></li>
+   <li><a class="<?= $this->uri->segment(2) == 'masters' && $this->uri->segment(3) == 'pages' ? 'active' : '' ?>" href="<?=admin_url('masters/pages/')?>"><?= lang('pages') ?></a></li>
    
   </ul>
 </nav>

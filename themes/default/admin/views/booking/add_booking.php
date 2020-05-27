@@ -78,7 +78,7 @@
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('no_of_ticket', 'no_of_ticket'); ?>
 							<div class="controls">
-								<input type="text" id="no_of_ticket" value="1" name="no_of_ticket" class="form-control" required="required"/>
+								<input type="number" id="no_of_ticket" value="1" name="no_of_ticket" class="form-control" required="required"/>
 							</div>
 						</div>
 
@@ -132,13 +132,15 @@ $(document).on('change', '#package_id', function(){
 	var package_price  = $('#package_id option:selected').attr('data-price');
 	var package_days  = $('#package_id option:selected').attr('data-days');
 	var no_of_ticket = $('#no_of_ticket').val();
-	
+	alert(no_of_ticket );
 	$('#per_head').text(package_price ? package_price : 0.00);
 	$('#days').text(package_days ? package_days : 0);
 	
 	if(no_of_ticket != 0){
 		var price = package_price ? package_price : 0;
+		price = price.slice(1);
 		var ticket_price = (no_of_ticket * price).toFixed(2);
+		alert(ticket_price);
 		$('#ticket_price').val(ticket_price);
 	}
 });

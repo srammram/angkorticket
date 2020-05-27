@@ -63,18 +63,34 @@
                 </a>
             </div>
             <div class="header-nav">
+			<?php
+			$n = $this->site->unreadNotification();
+			//var_dump($n);
+			?>
                 <ul class="nav navbar-nav pull-right">
                 	<li class="dropdown">
                         <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
                               
-                            <i class="fa fa-bell" title="<?= lang('notification') ?>" aria-hidden="true"></i><small>0</small>
+                            <i class="fa fa-bell" title="<?= lang('notification') ?>" aria-hidden="true"></i><small><?= !empty($n) ? count($n) : 0; ?></small>
                         </a>
                         <ul class="dropdown-menu pull-right">
-                           
+                           <?php
+						   if(!empty($n)){
+							   foreach($n as $notify){
+						   ?>
                             <li>
-                                No Notification
+                               <a href="<?= admin_url('notification') ?>"> <?= $notify->message ?></a>
                             </li>
-                           
+                           <?php
+							   }
+						   }else{
+						   ?>
+						   <li>
+                               <a href=""> No Notification</a>
+                            </li>
+                           <?php
+						   }
+						   ?>
                         </ul>
                     </li>
                     

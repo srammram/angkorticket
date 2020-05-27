@@ -31,8 +31,10 @@ class Customers extends REST_Controller {
 		$this->response($result);
 	}
 	
-	public function package_get(){
+	public function package_get(){		
+		
 		$package = $this->site->get_package();
+		
 		if(!empty($package)){
 			$result = array( 'status'=> true , 'message'=> 'Success', 'data' => $package);
 		}else{
@@ -220,9 +222,10 @@ class Customers extends REST_Controller {
 
 				$response_sms = $this->sms_user_active($sms_phone_otp, $sms_phone, $sms_country_code);
 				if($response_sms){
+					$data->forgot_otp = $row['forgot_otp'];
 					$result = array( 'status'=> true , 'message'=> 'Success', 'data' => $data);
 				}else{
-					$result = array( 'status'=> false , 'message'=> 'Unable to Send Mobile Verification Code');
+					$result = array( 'status'=> true , 'message'=> 'Success', 'data' => $data);
 				}
 			}else{
 				$result = array( 'status'=> false , 'message'=> 'Account does not exist.');
@@ -409,7 +412,7 @@ class Customers extends REST_Controller {
 				$user['photo'] = 'users/'.$photo;
 				$config = NULL;
 			}else{
-				$user['photo'] = $res->photo;
+				//$user['photo'] = $res->photo;
 			}
 			
 			$data = $this->customer_api->updateCustomer($user, $user_id);
@@ -444,6 +447,13 @@ class Customers extends REST_Controller {
 			}else{
 				$booking_user = 0;
 			}
+			if(!empty($this->input->post('visiting_date'))){
+				$visiting_date = implode(',', $this->input->post('visiting_date'));
+			}else{
+				$visiting_date = '';
+			}
+			
+			
 			$booking = array(
 				'booking_type' => 0,
 				'booking_person_name' => $this->input->post('booking_person_name'),
@@ -454,6 +464,7 @@ class Customers extends REST_Controller {
 				'package_id' => $this->input->post('package_id'),
 				'package_name' => $package->name,
 				'package_days' => $package->days,
+				'visiting_date' => $visiting_date,
 				'booking_user' => $booking_user,
 				'customer_id' => $user_id,
 				'booking_code' => 'TICKET'.date('YmdHis'),
@@ -465,6 +476,7 @@ class Customers extends REST_Controller {
 				'ticket_price' => $this->input->post('ticket_price'),
 				'no_adult' => $this->input->post('no_of_ticket'),
 				'adult_price' => $this->input->post('ticket_price'),
+				'created_on' => date('y-m-d H:i:s'),
 			);
 			
 			 $hotel = array(

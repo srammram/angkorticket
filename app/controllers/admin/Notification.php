@@ -31,7 +31,7 @@ class Notification extends MY_Controller
 	
     function index()
     {
-		
+		$this->site->updateNotification();
 		$this->site->users_logs($this->session->userdata('user_id'), $this->getUserIpAddr, $this->getUserIpAddr, json_encode($_POST), $_SERVER['REQUEST_URI']);
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
        
@@ -47,7 +47,7 @@ class Notification extends MY_Controller
 		
         $this->load->library('datatables');
         $this->datatables
-            ->select(" {$this->db->dbprefix('notification')}.title, {$this->db->dbprefix('notification')}.message ")
+            ->select("{$this->db->dbprefix('notification')}.created_on, {$this->db->dbprefix('notification')}.user_type, {$this->db->dbprefix('notification')}.title, {$this->db->dbprefix('notification')}.message ")
             ->from("notification")
 			->where("notification.user_type = 0");
 			

@@ -147,6 +147,8 @@ class MY_Controller extends CI_Controller {
         $meta['dateFormats'] = $data['dateFormats'];
         $meta['assets'] = $data['assets'];
         $meta['GP'] = $data['GP'];
+		
+		
         
         $meta['navigation'] = $this->load->view($this->theme . 'navigation', $meta,true);
         $this->load->view($this->theme . 'header', $meta);

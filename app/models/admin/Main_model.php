@@ -10,6 +10,17 @@ class Main_model extends CI_Model
 		$this->sms_table = 'sms_templates';
     }
 	
+	public function getPagetslug($slug){
+		$this->db->select('*');
+		$this->db->from('pages');
+		$this->db->where('slug', $slug);
+		$q = $this->db->get();
+		if ($q->num_rows() > 0) {	
+			
+			return $q->row();	
+		}
+		return false;
+	}
 	function create_ticket($enquiry, $customer_id, $help_department, $countryCode){
 		$enquiry['is_country'] = $countryCode;
 		$q = $this->db->insert('enquiry', $enquiry);

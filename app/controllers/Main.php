@@ -23,6 +23,11 @@ class Main extends MY_Controller
         $this->load->view($this->theme . 'index', $this->data);
     }
 	
+	function page($slug) {
+		$this->data['result'] = $this->main_model->getPagetslug($slug);
+        $this->load->view($this->theme . 'page', $this->data);
+    }
+	
 	function booking_conditions() {
         $this->load->view($this->theme . 'booking_conditions', $this->data);
     }

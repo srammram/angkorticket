@@ -44,15 +44,21 @@ class Booking extends MY_Controller
 		
 		$sdate = $this->input->get('sdate');
 		$edate = $this->input->get('edate');
+		$booking_type = $this->input->get('booking_type');
 		
         $this->load->library('datatables');
         $this->datatables
-            ->select(" {$this->db->dbprefix('booking')}.id as id, {$this->db->dbprefix('booking')}.booking_type, {$this->db->dbprefix('booking')}.booking_code, {$this->db->dbprefix('booking')}.package_name, {$this->db->dbprefix('booking')}.no_of_ticket, {$this->db->dbprefix('booking')}.ticket_price, {$this->db->dbprefix('booking')}.ticket_date, {$this->db->dbprefix('booking')}.booking_user, {$this->db->dbprefix('booking')}.booking_person_name, {$this->db->dbprefix('booking')}.booking_person_mobile, {$this->db->dbprefix('booking')}.payment_gateway, {$this->db->dbprefix('booking')}.payment_transaction_no, {$this->db->dbprefix('booking')}.payment_status ")
+            ->select(" {$this->db->dbprefix('booking')}.id as id, {$this->db->dbprefix('booking')}.created_on, {$this->db->dbprefix('booking')}.booking_type, {$this->db->dbprefix('booking')}.booking_code, {$this->db->dbprefix('booking')}.package_name, {$this->db->dbprefix('booking')}.no_of_ticket, {$this->db->dbprefix('booking')}.ticket_price, {$this->db->dbprefix('booking')}.ticket_date, {$this->db->dbprefix('booking')}.booking_user, {$this->db->dbprefix('booking')}.booking_person_name, {$this->db->dbprefix('booking')}.booking_person_mobile, {$this->db->dbprefix('booking')}.payment_gateway, {$this->db->dbprefix('booking')}.payment_transaction_no, {$this->db->dbprefix('booking')}.payment_status ")
             ->from("booking");
 			
 			if(!empty($sdate) && !empty($edate)){
 				$this->datatables->where("DATE({$this->db->dbprefix('booking')}.created_on) >=", date("Y-m-d", strtotime(str_replace('/', '-', $sdate))));
        			$this->datatables->where("DATE({$this->db->dbprefix('booking')}.created_on) <=", date("Y-m-d", strtotime(str_replace('/', '-', $edate))));
+			}
+			if($booking_type == 'admin'){
+				$this->datatables->where("{$this->db->dbprefix('booking')}.booking_type", 1);
+			}elseif($booking_type == 'app'){
+				$this->datatables->where("{$this->db->dbprefix('booking')}.booking_type", 0);
 			}
 
 			

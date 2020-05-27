@@ -6,6 +6,13 @@
         '<a href="'+site.base_url+'masters/bank_status/activate/'+ y[1] +'"><span class="label label-danger">  '+lang['inactive']+'</span><a/>';
     }
 	
+	function user_type(x) {
+		
+       	return x == 0 ? 
+        '<span class=" text-success">Admin</span>' :
+        '<span class=" text-danger">Customer</span>';
+    }
+	
 	function bank_default(a) {
        
         return a == 1 ?
@@ -27,7 +34,7 @@
                 });
                 $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
             },
-            "aoColumns": [ {"mRender": empty_status}, {"mRender": empty_status}]
+            "aoColumns": [ {"mRender": empty_status}, {"mRender": user_type}, {"mRender": empty_status}, {"mRender": empty_status}]
         });
     });
 </script>
@@ -107,7 +114,8 @@
                            class="table table-bordered table-hover table-striped">
                         <thead>
                         <tr>
-                            
+                            <th class="col-lg-2"><?php echo lang('created'); ?></th>
+							<th class="col-lg-2"><?php echo lang('user_type'); ?></th>
                             <th class="col-lg-2"><?php echo lang('title'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('message'); ?></th>
                         </tr>

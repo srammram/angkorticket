@@ -116,6 +116,7 @@ if(!function_exists('send_otp_sms')){
 			
 			//http://control.msg91.com/api/sendotp.php?authkey=232920Avigv7N9CX935b7bd7be&message=your%20otp%20is%2098765&sender=SRAMKA&mobile=919600619919&otp=98765
 			//echo "http://control.msg91.com/api/sendotp.php?authkey=232920Avigv7N9CX935b7bd7be&message=your%20otp%20is%20".$otp."&sender=SRAMKA&mobile=".$sms_phone."&otp=".$otp."";
+			//die;
 			$response = file_get_contents("http://control.msg91.com/api/sendotp.php?authkey=226739AMe8Nuyau5d440cfb&message=your%20otp%20is%20".$otp."&sender=SRAMTT&mobile=".$sms_phone."&otp=".$otp."");
 			//echo $response;
 			//die;

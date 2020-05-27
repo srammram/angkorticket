@@ -8,22 +8,7 @@
                 echo admin_form_open_multipart("people/add_customer", $attrib);
                 ?>
                 <div class="row">
-					<div class="col-md-12">  
-						<h2 class="box_he_de"><?= lang('login_details') ?></h2>  
-						<div class="form-group col-sm-3 col-xs-12">
-							<?php echo lang('password', 'password'); ?>
-							<div class="controls">
-								<?php echo form_password('password', '', 'class="form-control tip" id="password" required="required" '); ?>
-							</div>
-						</div>
-
-						<div class="form-group col-sm-3 col-xs-12">
-							<?php echo lang('confirm_password', 'confirm_password'); ?>
-							<div class="controls">
-								<?php echo form_password('confirm_password', '', 'class="form-control" id="confirm_password" required="required" data-bv-identical="true" data-bv-identical-field="password" data-bv-identical-message="' . lang('pw_not_same') . '"'); ?>
-							</div>
-						</div>
-					</div>
+					
 					<div class="col-md-12">
 						<h2 class="box_he_de"><?= lang('user_details') ?></h2> 
                         
@@ -57,18 +42,32 @@
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('mobile', 'mobile'); ?>
 							<div class="controls">
-								<input type="text" id="mobile" name="mobile" class="form-control" required="required"/>
+								<input type="text" id="mobile" name="mobile" class="form-control"  maxlength="14" required="required"/>
 							</div>
 						</div>
 
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('email', 'email'); ?>
 							<div class="controls">
-								<input type="text" id="email" name="email" class="form-control"/>
+								<input type="text" id="email" name="email" class="form-control" required="required"/>
 							</div>
 							<p class="help-block-small"><?= lang('ex_email') ?></p>
 						</div>
+						
+						<div class="form-group col-sm-3 col-xs-12">
+							<?php echo lang('password', 'password'); ?>
+							<div class="controls">
+								<?php echo form_password('password', '', 'class="form-control tip" id="password" required="required" '); ?>
+							</div>
+						</div>
 
+						<div class="form-group col-sm-3 col-xs-12">
+							<?php echo lang('confirm_password', 'confirm_password'); ?>
+							<div class="controls">
+								<?php echo form_password('confirm_password', '', 'class="form-control" id="confirm_password" required="required" data-bv-identical="true" data-bv-identical-field="password" data-bv-identical-message="' . lang('pw_not_same') . '"'); ?>
+							</div>
+						</div>
+						
 						<div class="form-group col-sm-3 col-xs-12">
 							<?php echo lang('gender', 'gender'); ?>
 							<?php
@@ -87,7 +86,7 @@
 
 						<div class="form-group all col-sm-3 col-xs-12">
 							<?= lang("photo", "photo") ?>
-							<input id="photo" type="file" data-browse-label="<?= lang('browse'); ?>" name="photo" data-show-upload="false" data-show-preview="false" class="form-control file" accept="im/*">
+							<input id="photo" type="file" data-browse-label="<?= lang('browse'); ?>" name="photo" data-show-upload="false" data-show-preview="false" class="form-control file" accept="im/*" required="required">
 							<p class="help-block-small"><?= lang('image_size') ?></p>
 						</div>
 

@@ -97,6 +97,37 @@ class Site extends CI_Model
         return FALSE;
     }
 	
+	public function updateNotification(){
+		$this->db->where('is_read', 0);
+		$q = $this->db->update('notification', array('is_read' => 1));
+		if($q){
+			return TRUE;
+		}
+		return FALSE;
+	}
+	public function unreadNotification(){
+		$this->db->where('is_read', 0);
+		$q = $this->db->get('notification');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+	}
+	
+	public function Allpages(){
+		$this->db->where('status', 1);
+		$q = $this->db->get('pages');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+	}
 	
 	public function getAllGroups() {
 		
@@ -269,16 +300,28 @@ class Site extends CI_Model
 	}
 	
 	function get_package(){
-		$this->db->select('id, name, days, price');
+		$setting = $this->get_setting();
+		$default_currency = $this->getCurrencySymbol($setting->default_currency);
+		
+		$this->db->select('id, name, days, price, calender_show_no');
 		$q = $this->db->get('package');
 		if($q->num_rows()>0){
-			return $q->result();
+			foreach($q->result() as $row){
+				
+				if($default_currency != ''){
+					$row->default_currency = $default_currency;
+				}else{
+					$row->default_currency = '';
+				}
+				$data[] = $row;
+			}
+			return $data;
 		}
 		return false;
 	}
 	
 	function get_packageID($package_id){
-		$this->db->select('name, days, price');
+		$this->db->select('name, days, price, calender_show_no');
 		$this->db->where('id', $package_id);
 		$q = $this->db->get('package');
 		if($q->num_rows()>0){
@@ -299,4 +342,13 @@ class Site extends CI_Model
 		return 0;		
 	}
 	
+	function getCurrencySymbol($default_currency){
+		$this->db->select('symbol');
+		$this->db->where('id', $default_currency);
+		$q = $this->db->get('currency');
+		if($q->num_rows()>0){
+			return $q->row('symbol');
+		}
+		return 0;		
+	}
 }

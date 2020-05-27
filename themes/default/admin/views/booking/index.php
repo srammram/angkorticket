@@ -20,7 +20,7 @@
             "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "<?= lang('all') ?>"]],
             "iDisplayLength": <?= $Settings->rows_per_page ?>,
             'bProcessing': true, 'bServerSide': true,
-            'sAjaxSource': '<?= admin_url('booking/getBooking?sdate='.$_GET['sdate'].'&edate='.$_GET['edate']) ?>',
+            'sAjaxSource': '<?= admin_url('booking/getBooking?sdate='.$_GET['sdate'].'&edate='.$_GET['edate'].'&booking_type='.$_GET['booking_type']) ?>',
             'fnServerData': function (sSource, aoData, fnCallback) {
                 aoData.push({
                     "name": "<?= $this->security->get_csrf_token_name() ?>",
@@ -28,7 +28,7 @@
                 });
                 $.ajax({'dataType': 'json', 'type': 'POST', 'url': sSource, 'data': aoData, 'success': fnCallback});
             },
-            "aoColumns": [ {"mRender": booking_type}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": booking_user}, {"mRender": empty_status},{"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}]
+            "aoColumns": [ {"mRender": empty_status}, {"mRender": booking_type}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": booking_user}, {"mRender": empty_status},{"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}, {"mRender": empty_status}]
         });
     });
 </script>
@@ -85,7 +85,19 @@
                     </div>
                     
             </div>
-            
+            <div class="col-lg-3">        
+                    <div class="form-group">
+                        <?php echo lang('booking_type', 'Booking Type'); ?>
+                        <div class="controls">
+                           <select name="booking_type" id="booking_type" class="form-control">
+								<option <?= $_GET['booking_type'] == 'all' ? 'selected' : '' ?> value="all">All</option>
+								<option <?= $_GET['booking_type'] == 'admin' ? 'selected' : '' ?> value="admin">Admin</option>
+								<option <?= $_GET['booking_type'] == 'app' ? 'selected' : '' ?> value="app">App</option>
+						   </select>
+                        </div>
+                    </div>
+                    
+            </div>
            
             
             <div class="col-lg-3 row">
@@ -109,7 +121,8 @@
                            class="table table-bordered table-hover table-striped">
                         <thead>
                         <tr>
-                            <th style="width: 33.33%!important;"><?php echo lang('booking_type'); ?></th>
+                            <th style="width: 33.33%!important;"><?php echo lang('booking_date'); ?></th>
+							<th style="width: 33.33%!important;"><?php echo lang('booking_type'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('ticket_code'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('package_name'); ?></th>
                             <th style="width: 33.33%!important;"><?php echo lang('no_of_ticket'); ?></th>
@@ -206,7 +219,8 @@ $(document).ready(function(){
         var site = '<?php echo site_url() ?>';
 		var sdate = $('#start_date').val();
 		var edate = $('#end_date').val();
-		window.location.href = site+"admin/notification/index?sdate="+sdate+"&edate="+edate;
+		var booking_type = $('#booking_type').val();
+		window.location.href = site+"admin/booking/index?sdate="+sdate+"&edate="+edate+"&booking_type="+booking_type;
 		
     });
 

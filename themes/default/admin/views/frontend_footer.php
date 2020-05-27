@@ -26,12 +26,15 @@
 				<h3>Quick Links</h3>
 
 					<ul class="fh5co-footer-links">
-						<li><a href="<?= base_url('privacy_policy') ?>">Privacy Policy</a></li>
-
-						<li><a href="<?= base_url('booking_conditions') ?>">Booking Conditions</a></li>
-
-						<li><a href="<?= base_url('angkor_tips') ?>">Angkor Tips</a></li>
-
+						<?php
+						$pages = $this->site->Allpages();
+						foreach($pages as $page){
+						?>
+						<li><a href="<?= base_url().$page->slug ?>"><?= $page->title ?></a></li>
+						<?php
+						}
+						?>
+						
 
 
 					</ul>

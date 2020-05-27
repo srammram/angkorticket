@@ -57,9 +57,10 @@ class Customer_api extends CI_Model
 	}
 	
 	function forgototp($data){
-		$query = "select id from {$this->db->dbprefix('users')} where mobile='".$data['mobile']."' AND country_code='".$data['country_code']."' AND group_id = 3  ";
+		$query = "select id, country_code, mobile from {$this->db->dbprefix('users')} where mobile='".$data['mobile']."' AND country_code='".$data['country_code']."' AND group_id = 3 ORDER BY id DESC LIMIT 1 ";
 		$q = $this->db->query($query);
 		if($q->num_rows()>0){
+			
 			$this->db->where('id', $q->row('id'));
 			$this->db->update('users', array('forgot_otp' => $data['forgot_otp'], 'forgot_otp_verify' => 0));
 			$data = $q->row();
@@ -69,7 +70,7 @@ class Customer_api extends CI_Model
 	}
 	
 	function forgotcheckotp($data){
-		$query = "select id from {$this->db->dbprefix('users')} where id='".$data['customer_id']."' AND  forgot_otp='".$data['forgot_otp']."' AND group_id = 3 ";
+		$query = "select id, country_code, mobile from {$this->db->dbprefix('users')} where id='".$data['customer_id']."' AND  forgot_otp='".$data['forgot_otp']."' AND group_id = 3 ORDER BY id DESC LIMIT 1";
 		$q = $this->db->query($query);
 		if($q->num_rows()>0){
 			return true;
@@ -145,7 +146,7 @@ class Customer_api extends CI_Model
 		if($u->num_rows()>0){
 			$row = $u->row();
 			if($row->photo !=''){
-				$row->photo = $row->photo;
+				$row->photo = $image_path.$row->photo;
 			}else{
 				$row->photo = $image_path.'default.png';
 			}
@@ -194,14 +195,18 @@ class Customer_api extends CI_Model
 	
 	function getTicketList($user_id){
 		$image_path = base_url('assets/');
-		$this->db->select('b.id as ticket_id, b.booking_person_name, b.booking_person_mobile, b.booking_email, b.booking_gender, b.booking_country, b.booking_code as ticket_code,b.no_of_ticket, b.ticket_date, b.ticket_price, b.payment_gateway, h.hotel_name, h.room_no, h.hotel_image');
+		$this->db->select('b.id as ticket_id, b.booking_person_name, b.booking_person_mobile, b.booking_email, b.booking_gender, b.booking_country, b.booking_code as ticket_code,b.no_of_ticket, b.ticket_date, b.ticket_price, b.visiting_date, b.payment_gateway, h.hotel_name, h.room_no, h.hotel_image');
 		$this->db->from('booking b');
 		$this->db->join('hotel_enquiry h', 'h.booking_id = b.id', 'left');
 		$this->db->where('b.customer_id', $user_id);
 		$q = $this->db->get();
 		if($q->num_rows()>0){
 			foreach($q->result() as $row){
-				
+				if($row->visiting_date != ''){
+					$row->visiting_date = explode(',', $row->visiting_date);
+				}else{
+					$row->visiting_date = '0';
+				}
 				if($row->hotel_image !=''){
 					$row->photo = $image_path.$row->hotel_image;
 				}else{

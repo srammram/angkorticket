@@ -76,5 +76,99 @@ class Masters_model extends CI_Model
 		return false;
     }
 	
+	/*### Currency*/
+    function add_currency($data){
+		
+		$this->db->insert('currency', $data);
+        $currency_id = $this->db->insert_id();	
+		if($currency_id){
+			return true;
+		}
+		return false;
+    }
+    function update_currency($id,$data){
+		
+		$this->db->where('id',$id);
+		if($this->db->update('currency',$data)){
+	    	return true;
+		}
+		return false;
+    }
+	
+    function getCurrencyby_ID($id){
+		$this->db->select('*');
+		$this->db->from('currency');
+		$this->db->where('id',$id);
+		$q = $this->db->get();
+		if($q->num_rows()>0){
+			return $q->row();
+		}
+		return false;
+    }
+	function getALLCurrency(){
+		$q = $this->db->get('currency');
+		if($q->num_rows()>0){
+			foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+			return $data;
+		}
+		return false;
+	}
+    function update_currency_status($data,$id){
+		$this->db->where('id',$id);
+		if($this->db->update('currency',$data)){
+			return true;
+		}
+		return false;
+    }
+	
+	
+	/*### Pages*/
+    function add_pages($data){
+		
+		$this->db->insert('pages', $data);
+        $package_id = $this->db->insert_id();	
+		if($package_id){
+			return true;
+		}
+		return false;
+    }
+    function update_pages($id,$data){
+		
+		$this->db->where('id',$id);
+		if($this->db->update('pages',$data)){
+	    	return true;
+		}
+		return false;
+    }
+	
+    function getPagesby_ID($id){
+		$this->db->select('*');
+		$this->db->from('pages');
+		$this->db->where('id',$id);
+		$q = $this->db->get();
+		if($q->num_rows()>0){
+			return $q->row();
+		}
+		return false;
+    }
+	function getALLPages(){
+		$q = $this->db->get('pages');
+		if($q->num_rows()>0){
+			foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+			return $data;
+		}
+		return false;
+	}
+    function update_pages_status($data,$id){
+		$this->db->where('id',$id);
+		if($this->db->update('pages',$data)){
+			return true;
+		}
+		return false;
+    }
 	
 }

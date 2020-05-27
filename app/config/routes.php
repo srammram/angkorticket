@@ -9,6 +9,8 @@ $route['privacy_policy'] = 'main/privacy_policy';
 $route['angkor_tips'] = 'main/angkor_tips';
 $route['booking_conditions'] = 'main/booking_conditions';
 
+$route['(:any)'] = 'main/page/$1';
+
 $route['404_override'] = 'notify/error_404';
 $route['translate_uri_dashes'] = TRUE;
 
