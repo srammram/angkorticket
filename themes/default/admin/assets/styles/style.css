@@ -65,6 +65,7 @@ h6 {
 }
 .lt {
     width: 100%;
+	table-layout: fixed;
 }
 .lt td {
     vertical-align: top;
@@ -400,7 +401,7 @@ select.form-control option {
     border-top: 1px solid #357EBD;
     text-align: left;font-weight: 600;
 }
-.table-responsive { margin-bottom: 0; }
+.table-responsive { margin-bottom: 0;overflow-x: auto;}
 .table-responsive .form-inline select.form-control {
     width: auto;
 }
@@ -3696,7 +3697,7 @@ body, html
 
 /**/
 .btn-file{display: block!important;}
-.fileinput-remove{border-bottom-right-radius: 4px!important;border-top-right-radius: 4px!important;display: none;}
+.fileinput-remove{border-bottom-right-radius: 4px!important;border-top-right-radius: 4px!important;display: block;}
 .dataTables_wrapper{padding: 10px;}
 .img_box_se .magnifier-thumb-wrapper{display: inline;}
 .file-caption-name{position: absolute;}
